@@ -12,6 +12,20 @@ export default function Home() {
 
   return (
     <AnimatePresence>
+      {/* Navigation Component */}
+      <motion.div
+        className="fixed backdrop-blur-md px-[2rem] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify"
+        initial={{ y: 1000, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 1000, opacity: 0 }}
+        transition={{
+          duration: 0.8,
+          ease: "anticipate",
+        }}
+      >
+        <NavBar />
+      </motion.div>
+
       <motion.div
         className="w-full flex flex-col items-center justify-center text-justify px-[2rem]"
         initial={{ y: 1000, opacity: 0 }}
@@ -22,9 +36,6 @@ export default function Home() {
           ease: "anticipate",
         }}
       >
-        {/* Navigation Component */}
-        <NavBar />
-
         {/* Products Container */}
         <Products />
 
