@@ -35,9 +35,6 @@ Here’s a sample product JSON that can be used for seeding the database:
   "category": "tshirt",
   "price": 19.99,
   "gender": "unisex",
-  "size": "M",
   "color": "#34A853",
   "image_url": "https://example.com/images/tshirt-green.jpg",
-  "stock": 50,
-  "created_at": "2024-10-26T12:34:56Z"
 }
