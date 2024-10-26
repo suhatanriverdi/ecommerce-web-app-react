@@ -1,20 +1,24 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useSupabase } from "../supabase/SupabaseContext";
+import Product from "../supabase/model/Product";
 
 export default function Products() {
-  const [products, setProducts] = useState<[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const supabase = useSupabase();
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data: products, error } = await supabase.from("products").select();
+      const { data: products, error } = await supabase
+        .from("products")
+        .select();
 
       if (error) {
         console.error("Error fetching products:", error);
       } else {
+        // TODO
         console.log("Fetched products:", products);
-        // setProducts(products);
+        setProducts(products);
       }
     };
 
@@ -39,11 +43,11 @@ export default function Products() {
           <p>Sırala</p>
         </div>
         <div className="flex w-full justify-between mt-[1rem]">
-          {/* <div>
+          <div>
             {products.map((item) => (
-              <div key={item.id}>{item.title}</div>
+              <div key={item.Id}>{item.title}</div>
             ))}
-          </div> */}
+          </div>
           <div className="w-80 h-96 bg-slate-300"></div>
           <div className="w-80 h-96 bg-blue-300"></div>
           <div className="w-80 h-96 bg-green-300"></div>
