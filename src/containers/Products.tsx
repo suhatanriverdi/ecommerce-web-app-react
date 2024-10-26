@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { useSupabase } from "../supabase/SupabaseContext";
 
 export default function Products() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<[]>([]);
   const supabase = useSupabase();
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data: products, error } = await supabase.from("test").select("*");
+      const { data: products, error } = await supabase.from("products").select();
 
       if (error) {
         console.error("Error fetching products:", error);
