@@ -2,7 +2,6 @@ const hoodies = [
   {
     category: "hoodie",
     color: "#1C1C1C",
-    size: "M",
     desc: "Siyah kapüşonlu, rahat kesim hoodie.",
     price: 59.99,
     title: "Siyah Hoodie",
@@ -11,7 +10,6 @@ const hoodies = [
   {
     category: "hoodie",
     color: "#FF6347",
-    size: "L",
     desc: "Kırmızı kapüşonlu, sıcak tutan hoodie.",
     price: 64.99,
     title: "Kırmızı Hoodie",
@@ -20,7 +18,6 @@ const hoodies = [
   {
     category: "hoodie",
     color: "#4682B4",
-    size: "XL",
     desc: "Mavi, su geçirmez kapüşonlu hoodie.",
     price: 69.99,
     title: "Mavi Su Geçirmez Hoodie",
@@ -29,7 +26,6 @@ const hoodies = [
   {
     category: "hoodie",
     color: "#FFD700",
-    size: "S",
     desc: "Sarı, yumuşak kapüşonlu hoodie.",
     price: 55.99,
     title: "Sarı Yumuşak Hoodie",
@@ -38,16 +34,12 @@ const hoodies = [
   {
     category: "hoodie",
     color: "#FF4500",
-    size: "M",
-    desc: "Turuncu oversize hoodie, yüksek kalite kumaş.",
     price: 61.99,
-    title: "Turuncu Oversize Hoodie",
     img_url: "https://example.com/images/hoodie-orange.jpg",
   },
   {
     category: "hoodie",
     color: "#8A2BE2",
-    size: "L",
     desc: "Mor kapüşonlu, yumuşak dokunuş hoodie.",
     price: 59.49,
     title: "Mor Kapüşonlu Hoodie",
@@ -56,7 +48,6 @@ const hoodies = [
   {
     category: "hoodie",
     color: "#7FFF00",
-    size: "XL",
     desc: "Yeşil sportif kapüşonlu hoodie.",
     price: 63.99,
     title: "Yeşil Sportif Hoodie",
@@ -65,7 +56,6 @@ const hoodies = [
   {
     category: "hoodie",
     color: "#FF1493",
-    size: "S",
     desc: "Pembe kapüşonlu, kadınlar için özel tasarım hoodie.",
     price: 62.99,
     title: "Pembe Kadın Hoodie",
@@ -74,7 +64,6 @@ const hoodies = [
   {
     category: "hoodie",
     color: "#D2691E",
-    size: "M",
     desc: "Kahverengi kapüşonlu, rahat kesim hoodie.",
     price: 58.49,
     title: "Kahverengi Kapüşonlu Hoodie",
@@ -83,7 +72,6 @@ const hoodies = [
   {
     category: "hoodie",
     color: "#DC143C",
-    size: "L",
     desc: "Koyu kırmızı kapüşonlu hoodie, pamuklu.",
     price: 66.99,
     title: "Koyu Kırmızı Hoodie",
@@ -92,7 +80,6 @@ const hoodies = [
   {
     category: "hoodie",
     color: "#2E8B57",
-    size: "M",
     desc: "Orman yeşili kapüşonlu, doğa dostu hoodie.",
     price: 60.99,
     title: "Orman Yeşili Hoodie",
@@ -101,7 +88,6 @@ const hoodies = [
   {
     category: "hoodie",
     color: "#000080",
-    size: "S",
     desc: "Lacivert kapüşonlu, günlük giyim için ideal hoodie.",
     price: 59.99,
     title: "Lacivert Günlük Hoodie",
@@ -110,7 +96,6 @@ const hoodies = [
   {
     category: "hoodie",
     color: "#F08080",
-    size: "XL",
     desc: "Açık kırmızı kapüşonlu, rahat ve şık hoodie.",
     price: 64.49,
     title: "Açık Kırmızı Hoodie",
@@ -122,7 +107,6 @@ const sweatpants = [
   {
     category: "sweatpants",
     color: "#808080",
-    size: "L",
     desc: "Gri renkli rahat eşofman altı.",
     price: 35.99,
     title: "Gri Rahat Eşofman",
@@ -131,7 +115,6 @@ const sweatpants = [
   {
     category: "sweatpants",
     color: "#000000",
-    size: "M",
     desc: "Siyah düz kesim eşofman altı.",
     price: 37.99,
     title: "Siyah Düz Kesim Eşofman",
@@ -140,7 +123,6 @@ const sweatpants = [
   {
     category: "sweatpants",
     color: "#FF4500",
-    size: "XL",
     desc: "Turuncu sportif eşofman altı.",
     price: 40.99,
     title: "Turuncu Sportif Eşofman",
@@ -149,7 +131,6 @@ const sweatpants = [
   {
     category: "sweatpants",
     color: "#228B22",
-    size: "S",
     desc: "Yeşil bol kesim eşofman altı.",
     price: 36.99,
     title: "Yeşil Bol Kesim Eşofman",
@@ -158,7 +139,6 @@ const sweatpants = [
   {
     category: "sweatpants",
     color: "#0000FF",
-    size: "M",
     desc: "Mavi spor eşofman altı.",
     price: 38.99,
     title: "Mavi Spor Eşofman",
@@ -167,7 +147,6 @@ const sweatpants = [
   {
     category: "sweatpants",
     color: "#B22222",
-    size: "L",
     desc: "Kırmızı renkli, rahat eşofman altı.",
     price: 39.99,
     title: "Kırmızı Eşofman",
@@ -176,7 +155,6 @@ const sweatpants = [
   {
     category: "sweatpants",
     color: "#2F4F4F",
-    size: "XL",
     desc: "Koyu gri eşofman altı, rahat kesim.",
     price: 41.99,
     title: "Koyu Gri Eşofman",
@@ -185,7 +163,6 @@ const sweatpants = [
   {
     category: "sweatpants",
     color: "#4682B4",
-    size: "S",
     desc: "Açık mavi, rahat kesim eşofman altı.",
     price: 34.99,
     title: "Açık Mavi Eşofman",
@@ -194,7 +171,6 @@ const sweatpants = [
   {
     category: "sweatpants",
     color: "#FFD700",
-    size: "M",
     desc: "Sarı sportif eşofman altı.",
     price: 37.49,
     title: "Sarı Sportif Eşofman",
@@ -203,7 +179,6 @@ const sweatpants = [
   {
     category: "sweatpants",
     color: "#F4A460",
-    size: "L",
     desc: "Krem rengi, pamuklu eşofman altı.",
     price: 39.49,
     title: "Krem Rengi Eşofman",
@@ -212,7 +187,6 @@ const sweatpants = [
   {
     category: "sweatpants",
     color: "#FFC0CB",
-    size: "XL",
     desc: "Pembe sportif kesim eşofman altı.",
     price: 36.99,
     title: "Pembe Eşofman",
@@ -224,7 +198,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#34A853",
-    size: "M",
     desc: "Yüksek kaliteli, nefes alabilir pamuklu yeşil tişört.",
     price: 19.99,
     title: "Yeşil Pamuklu Tişört",
@@ -233,7 +206,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#FF0000",
-    size: "L",
     desc: "Pamuklu, kırmızı rahat kesim tişört.",
     price: 17.99,
     title: "Kırmızı Pamuklu Tişört",
@@ -242,7 +214,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#000000",
-    size: "S",
     desc: "Siyah, günlük kullanım için ideal tişört.",
     price: 18.49,
     title: "Siyah Günlük Tişört",
@@ -251,7 +222,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#1E90FF",
-    size: "M",
     desc: "Mavi, nefes alabilir tişört, sporcular için uygun.",
     price: 20.99,
     title: "Mavi Spor Tişört",
@@ -260,7 +230,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#FFFF00",
-    size: "L",
     desc: "Sarı, hafif ve şık tişört.",
     price: 18.99,
     title: "Sarı Şık Tişört",
@@ -269,16 +238,12 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#8A2BE2",
-    size: "XL",
-    desc: "Mor, oversize pamuklu tişört.",
     price: 21.49,
-    title: "Mor Oversize Tişört",
     img_url: "https://example.com/images/tshirt-purple.jpg",
   },
   {
     category: "tshirt",
     color: "#FFC0CB",
-    size: "S",
     desc: "Pembe, kadınlar için özel tasarım tişört.",
     price: 19.49,
     title: "Pembe Kadın Tişört",
@@ -287,7 +252,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#2F4F4F",
-    size: "M",
     desc: "Koyu gri, rahat kesim tişört.",
     price: 17.49,
     title: "Koyu Gri Tişört",
@@ -296,7 +260,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#FF4500",
-    size: "M",
     desc: "Turuncu, günlük kullanım için şık tişört.",
     price: 18.99,
     title: "Turuncu Günlük Tişört",
@@ -305,7 +268,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#4B0082",
-    size: "L",
     desc: "Lacivert, sportif kesim tişört.",
     price: 20.99,
     title: "Lacivert Sportif Tişört",
@@ -314,7 +276,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#FA8072",
-    size: "S",
     desc: "Somon rengi, hafif dokunuşlu tişört.",
     price: 19.49,
     title: "Somon Rengi Tişört",
@@ -323,7 +284,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#F08080",
-    size: "M",
     desc: "Açık kırmızı, pamuklu ve nefes alabilir tişört.",
     price: 19.99,
     title: "Açık Kırmızı Pamuklu Tişört",
@@ -332,7 +292,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#A52A2A",
-    size: "XL",
     desc: "Kahverengi klasik tişört, günlük kullanım.",
     price: 21.49,
     title: "Kahverengi Klasik Tişört",
@@ -341,7 +300,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#87CEEB",
-    size: "M",
     desc: "Açık mavi, hafif dokulu tişört.",
     price: 17.99,
     title: "Açık Mavi Hafif Tişört",
@@ -350,7 +308,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#008080",
-    size: "L",
     desc: "Turkuaz, nefes alabilir yazlık tişört.",
     price: 18.49,
     title: "Turkuaz Yazlık Tişört",
@@ -359,7 +316,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#FF1493",
-    size: "M",
     desc: "Fuşya, kadınlar için yazlık tişört.",
     price: 19.99,
     title: "Fuşya Kadın Tişört",
@@ -368,7 +324,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#708090",
-    size: "XL",
     desc: "Gri mavi karışımı, hafif ve rahat tişört.",
     price: 20.49,
     title: "Gri Mavi Karışımı Tişört",
@@ -377,7 +332,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#CD853F",
-    size: "S",
     desc: "Koyu bej, günlük kullanım için ideal tişört.",
     price: 18.99,
     title: "Koyu Bej Günlük Tişört",
@@ -386,7 +340,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#B8860B",
-    size: "M",
     desc: "Altın sarısı, modern kesim tişört.",
     price: 19.49,
     title: "Altın Sarısı Modern Tişört",
@@ -395,7 +348,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#DAA520",
-    size: "L",
     desc: "Hardal sarısı, rahat ve stil sahibi tişört.",
     price: 19.99,
     title: "Hardal Sarısı Tişört",
@@ -404,7 +356,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#FFDEAD",
-    size: "S",
     desc: "Açık bej, sade ve şık tişört.",
     price: 17.99,
     title: "Açık Bej Şık Tişört",
@@ -413,7 +364,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#DEB887",
-    size: "M",
     desc: "Açık kahve, yumuşak dokunuşlu tişört.",
     price: 19.49,
     title: "Açık Kahve Tişört",
@@ -422,7 +372,6 @@ const tshirts = [
   {
     category: "tshirt",
     color: "#8B4513",
-    size: "L",
     desc: "Kestane rengi, rahat kesim tişört.",
     price: 18.99,
     title: "Kestane Rengi Tişört",

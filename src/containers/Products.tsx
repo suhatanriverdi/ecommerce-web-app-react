@@ -1,20 +1,26 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
-
-// Install & Initialize Supabase
-import { supabase } from "../supabase/setup";
+import { useEffect, useState } from "react";
+import { useSupabase } from "../supabase/SupabaseContext";
 
 export default function Products() {
-  // const fetchProducts = async () => {
-  //   const { data, error } = await supabase.from("*").select();
-  //   console.log("Data:", data, " Error: ", error);
-  //   return error && data;
-  // };
+  const [products, setProducts] = useState([]);
+  const supabase = useSupabase();
 
-  // useEffect(() => {
-  //   // Fetch products from Supabase
-  //   fetchProducts();
-  // });
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data, error } = await supabase.from("products").select("*");
+
+      if (error) {
+        console.error("Error fetching products:", error);
+      } else {
+        console.log("Fetched products:", data);
+        setProducts(data);
+      }
+    };
+
+    // Fetch products from Supabase
+    fetchProducts();
+  }, []);
 
   return (
     <AnimatePresence>
@@ -32,7 +38,12 @@ export default function Products() {
           <p>Erkek → Tüm Ürünler</p>
           <p>Sırala</p>
         </div>
-        <div></div>
+        <div className="flex w-full justify-between mt-[1rem]">
+          {/* {products.map} */}
+          <div className="w-80 h-96 bg-slate-300"></div>
+          <div className="w-80 h-96 bg-blue-300"></div>
+          <div className="w-80 h-96 bg-green-300"></div>
+        </div>
       </motion.div>
     </AnimatePresence>
   );
