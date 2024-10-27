@@ -1,41 +1,51 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+// import { useState } from "react";
 import { useSupabase } from "../supabase/SupabaseContext";
 import Product from "../supabase/model/Product";
 import ProductCard from "../components/ProductCard";
+import useSWR from "swr";
+import NotFound from "../pages/NotFound";
+// import { sweatpants, tshirts, hoodies } from "../supabase/seed/sampleProducts";
 
-import { sweatpants, tshirts, hoodies } from "../supabase/seed/sampleProducts";
+// Define a fetcher function
+const fetcher = async (supabase) => {
+  const { data: products, error } = await supabase.from("products").select();
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return products;
+};
 
 export default function Products() {
   const supabase = useSupabase();
-  const [products, setProducts] = useState<Product[]>([]);
 
-  const productCards = sweatpants.map((product) => {
-    return <ProductCard key={product.color} {...product} />;
-  });
+  // Use the SWR hook for data fetching
+  const {
+    data: products,
+    error,
+    isLoading,
+  } = useSWR("products", () => fetcher(supabase));
 
-  // const productCards = products.map((product) => {
-  //   return <ProductCard key={product.Id} {...product} />;
+  if (error) {
+    return <NotFound />;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  // SAMPLE
+  // const productCards = sweatpants.map((product, index) => {
+  //   return <ProductCard key={`${product.category}-${index}`} {...product} />;
   // });
 
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     const { data: products, error } = await supabase
-  //       .from("products")
-  //       .select();
+  console.log("products: ", products);
 
-  //     if (error) {
-  //       console.error("Error fetching products:", error);
-  //     } else {
-  //       // TODO
-  //       console.log("Fetched products:", products);
-  //       setProducts(products);
-  //     }
-  //   };
-
-  // Fetch products from Supabase
-  // fetchProducts();
-  // }, []);
+  // Build the cards
+  const productCards = products.map((product: Product) => {
+    return <ProductCard key={product.Id} {...product} />;
+  });
 
   return (
     <AnimatePresence>
