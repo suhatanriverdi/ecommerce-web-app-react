@@ -60,7 +60,7 @@ export default function Products() {
           <p>Erkek → Tüm Ürünler</p>
           <p>Sırala</p>
         </div>
-        <div className="flex flex-wrap w-full gap-[1rem] mt-[1rem]">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] w-full gap-[1rem] mt-[1rem]">
           {productCards}
         </div>
       </motion.div>
