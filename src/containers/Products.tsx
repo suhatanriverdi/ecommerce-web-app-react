@@ -13,7 +13,6 @@ const fetcher = async (supabase) => {
   if (error) {
     throw new Error(error.message);
   }
-
   return products;
 };
 
@@ -39,8 +38,6 @@ export default function Products() {
   // const productCards = sweatpants.map((product, index) => {
   //   return <ProductCard key={`${product.category}-${index}`} {...product} />;
   // });
-
-  console.log("products: ", products);
 
   // Build the cards
   const productCards = products.map((product: Product) => {
