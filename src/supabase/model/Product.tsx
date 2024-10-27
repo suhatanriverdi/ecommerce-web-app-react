@@ -1,5 +1,5 @@
 export default interface Product {
-  Id: number;
+  Id?: number; // TODO
   category: string;
   color: string;
   desc: string;

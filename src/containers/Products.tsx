@@ -2,29 +2,40 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useSupabase } from "../supabase/SupabaseContext";
 import Product from "../supabase/model/Product";
+import ProductCard from "../components/ProductCard";
+
+import { sweatpants, tshirts, hoodies } from "../supabase/seed/sampleProducts";
 
 export default function Products() {
-  const [products, setProducts] = useState<Product[]>([]);
   const supabase = useSupabase();
+  const [products, setProducts] = useState<Product[]>([]);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const { data: products, error } = await supabase
-        .from("products")
-        .select();
+  const productCards = sweatpants.map((product) => {
+    return <ProductCard key={product.color} {...product} />;
+  });
 
-      if (error) {
-        console.error("Error fetching products:", error);
-      } else {
-        // TODO
-        console.log("Fetched products:", products);
-        setProducts(products);
-      }
-    };
+  // const productCards = products.map((product) => {
+  //   return <ProductCard key={product.Id} {...product} />;
+  // });
 
-    // Fetch products from Supabase
-    fetchProducts();
-  }, []);
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     const { data: products, error } = await supabase
+  //       .from("products")
+  //       .select();
+
+  //     if (error) {
+  //       console.error("Error fetching products:", error);
+  //     } else {
+  //       // TODO
+  //       console.log("Fetched products:", products);
+  //       setProducts(products);
+  //     }
+  //   };
+
+  // Fetch products from Supabase
+  // fetchProducts();
+  // }, []);
 
   return (
     <AnimatePresence>
@@ -42,15 +53,8 @@ export default function Products() {
           <p>Erkek → Tüm Ürünler</p>
           <p>Sırala</p>
         </div>
-        <div className="flex w-full justify-between mt-[1rem]">
-          <div>
-            {products.map((item) => (
-              <div key={item.Id}>{item.title}</div>
-            ))}
-          </div>
-          <div className="w-80 h-96 bg-slate-300"></div>
-          <div className="w-80 h-96 bg-blue-300"></div>
-          <div className="w-80 h-96 bg-green-300"></div>
+        <div className="flex flex-wrap w-full gap-[1rem] mt-[1rem]">
+          {productCards}
         </div>
       </motion.div>
     </AnimatePresence>
