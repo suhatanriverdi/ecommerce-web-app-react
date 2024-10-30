@@ -21,7 +21,6 @@ export default function Products() {
   const PAGE_COUNT = 15;
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [offset, setOffset] = useState(1);
-  const [isScrollProductsLoading, setIsScrollProductsLoading] = useState(false);
   const [isInView, setIsInView] = useState(false);
 
   const handleScroll = () => {
@@ -33,7 +32,7 @@ export default function Products() {
     }
   };
 
-  const fetchProducts = async (offset: number, limit: number) => {
+  const fetchProducts = async (offset: number) => {
     const from = offset * PAGE_COUNT;
     const to = from + PAGE_COUNT - 1;
 
@@ -46,17 +45,15 @@ export default function Products() {
   };
 
   const loadMoreProducts = async (offset: number) => {
-    setIsScrollProductsLoading(true);
     // Every time we fetch, we want to increase
     // the offset to load fresh Products
     setOffset((prev) => prev + 1);
-    const newProducts = await fetchProducts(offset, PAGE_COUNT);
+    const newProducts = await fetchProducts(offset);
     // Merge new Products with all previously loaded
     setProducts((prevProducts) => [
       ...(prevProducts || []),
       ...(newProducts || []),
     ]);
-    setIsScrollProductsLoading(false);
   };
 
   // Infinite Scroll, to load more
