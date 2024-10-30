@@ -42,7 +42,6 @@ export default function Products() {
       .select("*")
       .range(from, to);
 
-    console.log("scroll data:", data);
     return data;
   };
 

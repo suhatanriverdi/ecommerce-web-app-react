@@ -11,7 +11,7 @@ export default function NotFound({ reason }: Reason) {
         {reason === "supabase" ? "Supabase Error" : "URL Not Found :("}
       </p>
       <Link
-        className="p-5 mt-10 bg-blue-200 border cursor-pointer border-x-sky-200 rounded-2xl"
+        className="mb-10 mt-10 bg-blue-200 border cursor-pointer border-x-sky-200 rounded-2xl"
         to="/"
       >
         Go Back to Home Page
