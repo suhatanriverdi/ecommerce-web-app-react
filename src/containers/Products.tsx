@@ -7,18 +7,18 @@ import NotFound from "../pages/NotFound";
 import { fetcher } from "../supabase/utils/fetcher";
 import { useRef, useEffect, useState } from "react";
 import { debounce } from "lodash";
-import { SupabaseClient } from "@supabase/supabase-js";
-import { atom, useAtom } from "jotai";
-
-// Products Atom
-export const productsAtom = atom<Product[]>([]);
+import { useAtom } from "jotai";
+import { productsAtom } from "./productsAtom";
 
 export default function Products() {
   // Jotai State Management
   const [products, setProducts] = useAtom(productsAtom);
 
+  // Use the SWR hook for data fetching
+  const supabase = useSupabase();
+
   // Scrolling
-  const PAGE_COUNT = 10;
+  const PAGE_COUNT = 15;
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [offset, setOffset] = useState(1);
   const [isScrollProductsLoading, setIsScrollProductsLoading] = useState(false);
@@ -33,14 +33,30 @@ export default function Products() {
     }
   };
 
+  const fetchProducts = async (offset: number, limit: number) => {
+    const from = offset * PAGE_COUNT;
+    const to = from + PAGE_COUNT - 1;
+
+    const { data } = await supabase
+      .from("products")
+      .select("*")
+      .range(from, to);
+
+    console.log("scroll data:", data);
+    return data;
+  };
+
   const loadMoreProducts = async (offset: number) => {
     setIsScrollProductsLoading(true);
     // Every time we fetch, we want to increase
     // the offset to load fresh Products
     setOffset((prev) => prev + 1);
-    const { data: newProducts } = await fetchProducts(offset, PAGE_COUNT);
+    const newProducts = await fetchProducts(offset, PAGE_COUNT);
     // Merge new Products with all previously loaded
-    setLoadedProducts((prevProducts) => [...prevProducts, ...newProducts]);
+    setProducts((prevProducts) => [
+      ...(prevProducts || []),
+      ...(newProducts || []),
+    ]);
     setIsScrollProductsLoading(false);
   };
 
@@ -60,32 +76,16 @@ export default function Products() {
     };
   }, []);
 
-  const fetchProducts = async (
-    offset: number,
-    limit: number,
-    supabase: SupabaseClient
-  ) => {
-    const from = offset * PAGE_COUNT;
-    const to = from + PAGE_COUNT - 1;
-
-    const { data } = await supabase
-      .from("products")
-      .select("*")
-      .range(from, to);
-
-    return data;
-  };
-
-  // Use the SWR hook for data fetching
-  const supabase = useSupabase();
   const { data, error, isLoading } = useSWR("products", () =>
-    fetcher(supabase)
+    fetcher(supabase, PAGE_COUNT)
   );
 
   // Update the products atom right after SWR fetches
-  if (data) {
-    setProducts(data);
-  }
+  useEffect(() => {
+    if (data) {
+      setProducts(data);
+    }
+  }, [data]);
 
   // TODO
   // Loading state, this is needed otherwise will produce an error
