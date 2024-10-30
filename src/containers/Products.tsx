@@ -1,15 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
-// import { useState } from "react";
 import { useSupabase } from "../supabase/SupabaseContext";
 import Product from "../supabase/model/Product";
 import ProductCard from "../components/ProductCard";
 import useSWR from "swr";
 import NotFound from "../pages/NotFound";
 import { fetcher } from "../supabase/utils/fetcher";
-export default function Products() {
-  const supabase = useSupabase();
 
+export default function Products() {
   // Use the SWR hook for data fetching
+  const supabase = useSupabase();
   const {
     data: products,
     error,
@@ -26,13 +25,8 @@ export default function Products() {
     return <div>Loading...</div>;
   }
 
-  // SAMPLE
-  // const productCards = sweatpants.map((product, index) => {
-  //   return <ProductCard key={`${product.category}-${index}`} {...product} />;
-  // });
-
   // Build the cards
-  const productCards = products.map((product: Product) => {
+  const productCards = products!.map((product: Product) => {
     return <ProductCard key={product.Id} {...product} />;
   });
 
