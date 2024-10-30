@@ -1,6 +1,6 @@
 // components/Layout.tsx
 import { Outlet } from "react-router-dom";
-import ScrollToTop from "./utils/ScrollToTop";
+import ScrollToTop from "../utils/ScrollToTop";
 
 const Layout = () => {
   return (

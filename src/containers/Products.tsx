@@ -106,7 +106,7 @@ export default function Products() {
   return (
     <AnimatePresence>
       <motion.div
-        className="w-full max-w-[62rem] mt-[130px] flex flex-col items-center justify-center"
+        className="w-full max-w-[62rem] flex flex-col items-center justify-center"
         initial={{ y: 1000, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 1000, opacity: 0 }}
@@ -115,10 +115,11 @@ export default function Products() {
           ease: "anticipate",
         }}
       >
-        <div className="flex justify-between w-full">
+        {/* <div className="w-screen sticky top-[59px] backdrop-blur-md pb-[1rem] z-10 flex max-w-[62rem] justify-between items-center text-center pt-[20px] text-base">
           <p>Erkek → Tüm Ürünler</p>
           <p>Sırala</p>
-        </div>
+        </div> */}
+
         <div
           ref={containerRef}
           className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] w-full gap-[1rem] mt-[1rem]"

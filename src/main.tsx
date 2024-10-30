@@ -13,7 +13,7 @@ import NotFound from "./pages/NotFound.tsx";
 
 // React Router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./Layout.tsx";
+import Layout from "./pages/Layout.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
