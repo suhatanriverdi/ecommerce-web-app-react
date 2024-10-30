@@ -24,13 +24,18 @@ const ClodinaryImg = ({ img_url: publicID }: Product) => {
     .quality("auto");
 
   return (
-    <div className="flex items-center justify-center h-full w-full">
+    <div className="flex items-center justify-center min-h-[12rem]">
       {isLoading && <Loading />}
 
       <AdvancedImage
         onLoad={handleImageLoad}
         plugins={[lazyload()]}
         cldImg={img}
+        className={
+          isLoading
+            ? "opacity-0"
+            : "opacity-100 transition-opacity duration-400"
+        }
       />
     </div>
   );
