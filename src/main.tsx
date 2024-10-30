@@ -13,22 +13,26 @@ import NotFound from "./pages/NotFound.tsx";
 
 // React Router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./Layout.tsx";
 const router = createBrowserRouter([
   {
-    // First Page Where We Display Our Branding with Animations
     path: "/",
-    element: <Introduction />,
+    element: <Layout />,
     errorElement: <NotFound />,
-  },
-  {
-    path: "/advertisement",
-    element: <Advertisement />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/home/:gender",
-    element: <Home />,
-    errorElement: <NotFound />,
+    children: [
+      {
+        path: "",
+        element: <Introduction />,
+      },
+      {
+        path: "advertisement",
+        element: <Advertisement />,
+      },
+      {
+        path: "home/:gender",
+        element: <Home />,
+      },
+    ],
   },
 ]);
 
