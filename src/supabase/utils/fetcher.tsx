@@ -1,3 +1,10 @@
-export default async function fetcher(...args: Parameters<typeof fetch>) {
-  return (await fetch(...args)).json();
-}
+import { type SupabaseClient } from "@supabase/supabase-js";
+
+// Define a fetcher function
+export const fetcher = async (supabase: SupabaseClient) => {
+  const { data: products, error } = await supabase.from("products").select();
+  if (error) {
+    throw new Error(error.message);
+  }
+  return products;
+};

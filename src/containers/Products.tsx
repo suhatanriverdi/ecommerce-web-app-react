@@ -5,17 +5,7 @@ import Product from "../supabase/model/Product";
 import ProductCard from "../components/ProductCard";
 import useSWR from "swr";
 import NotFound from "../pages/NotFound";
-// import { sweatpants, tshirts, hoodies } from "../supabase/seed/sampleProducts";
-
-// Define a fetcher function
-const fetcher = async (supabase) => {
-  const { data: products, error } = await supabase.from("products").select();
-  if (error) {
-    throw new Error(error.message);
-  }
-  return products;
-};
-
+import { fetcher } from "../supabase/utils/fetcher";
 export default function Products() {
   const supabase = useSupabase();
 
@@ -26,10 +16,12 @@ export default function Products() {
     isLoading,
   } = useSWR("products", () => fetcher(supabase));
 
+  // TODO
   if (error) {
     return <NotFound />;
   }
 
+  // TODO
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -60,7 +52,7 @@ export default function Products() {
           <p>Erkek → Tüm Ürünler</p>
           <p>Sırala</p>
         </div>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] w-full gap-[1rem] mt-[1rem]">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] w-full gap-[1rem] mt-[1rem]">
           {productCards}
         </div>
       </motion.div>

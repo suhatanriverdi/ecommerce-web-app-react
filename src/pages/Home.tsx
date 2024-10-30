@@ -27,6 +27,7 @@ export default function Home() {
       </motion.div>
 
       <motion.div
+        key={"prod-link"}
         className="w-full flex flex-col items-center justify-center text-justify px-[2rem]"
         initial={{ y: 1000, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

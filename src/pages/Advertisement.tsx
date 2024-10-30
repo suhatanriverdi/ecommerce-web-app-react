@@ -55,7 +55,7 @@ export default function Advertisement() {
                 <motion.div
                   style={{
                     top: parallaxRatio,
-                    filter: `blur(5px)`,
+                    filter: `blur(3px)`,
                   }}
                   className="bg-green-300 -rotate-6 absolute -z-[1] -top-[1.3rem] desktop:right-[2rem] right-[3.7rem] tablet:right-[2rem] w-[10rem] h-[15rem] tablet:-top-[1.6rem] desktop:-top-[2.2rem] tablet:w-[11.5rem] desktop:w-[31rem] tablet:h-[15.7rem] desktop:h-[35rem]"
                 ></motion.div>
@@ -74,7 +74,7 @@ export default function Advertisement() {
                 <motion.div
                   style={{
                     top: parallaxRatio,
-                    filter: `blur(5px)`,
+                    filter: `blur(3px)`,
                   }}
                   className="bg-cyan-300 rotate-6 absolute -z-[1] -top-[1.3rem] -right-[1.8rem] tablet:-right-[1.7rem] desktop:-right-[2.7rem] w-[10rem] h-[15rem] tablet:-top-[1.4rem] desktop:-top-[2.2rem] tablet:w-[12rem] desktop:w-[29rem] tablet:h-[15.7] desktop:h-[35rem]"
                 ></motion.div>
@@ -91,7 +91,7 @@ export default function Advertisement() {
                 <motion.div
                   style={{
                     top: parallaxRatio,
-                    filter: `blur(5px)`,
+                    filter: `blur(3px)`,
                   }}
                   className="bg-orange-300 -rotate-6 absolute -z-[1] -top-[1.3rem] right-[3rem] tablet:right-[2rem] w-[10rem] h-[14rem] tablet:-top-[1.6rem] desktop:-top-[2.2rem] tablet:w-[10.5rem] desktop:w-[31rem] tablet:h-[15rem] desktop:h-[35rem]"
                 ></motion.div>
