@@ -12,7 +12,7 @@ export default function Home() {
       {/* Fixed Navigation Component */}
       <motion.div
         key="mot-1"
-        className="text-lg fixed -top-[1px] bg-white px-[2rem] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify"
+        className="z-50 text-lg fixed -top-[1px] bg-white px-[2rem] pb-[1rem] w-full flex flex-col items-center justify-center text-justify"
         initial={{ y: 1000, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 1000, opacity: 0 }}
