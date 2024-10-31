@@ -76,9 +76,8 @@ export default function Products() {
   // Sort Query Atom
   const [sortQuery] = useAtom(sortQueryAtom);
 
-  // SWR kullanarak veri çekmek için anahtar olarak sortQuery kullanın
   const { data, error, isLoading } = useSWR(
-    [`products`, sortQuery], // Anahtar değiştiğinde yeniden yükleme için diziyi kullanın
+    [`products`, sortQuery], // Whenever sortQuery changes, re-fetch
     () => fetcher(supabase, PAGE_COUNT, sortQuery)
   );
 

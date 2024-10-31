@@ -37,6 +37,7 @@ export default function CategoriesSortNavBar() {
   const [, setSortQuery] = useAtom(sortQueryAtom);
   const handleSortQuery = (mode: string) => {
     setSortQuery(mode);
+    handleSortMenu();
   };
 
   return (
