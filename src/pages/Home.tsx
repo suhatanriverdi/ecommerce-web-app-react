@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Products from "../containers/Products";
 
 // Navigation Bar
@@ -7,9 +7,6 @@ import NavBar from "../components/NavBar";
 import CategoriesSortNavBar from "../components/CategoriesSortNavBar";
 
 export default function Home() {
-  const { gender: category } = useParams();
-  console.log("category: ", category);
-
   return (
     <AnimatePresence>
       {/* Fixed Navigation Component */}

@@ -9,6 +9,7 @@ import { useRef, useEffect, useState } from "react";
 import { debounce } from "lodash";
 import { useAtom } from "jotai";
 import { productsAtom } from "../atoms/productsAtom";
+import { sortQueryAtom } from "../atoms/sortQueryAtom";
 
 export default function Products() {
   // Jotai State Management
@@ -72,8 +73,13 @@ export default function Products() {
     };
   }, []);
 
-  const { data, error, isLoading } = useSWR("products", () =>
-    fetcher(supabase, PAGE_COUNT)
+  // Sort Query Atom
+  const [sortQuery] = useAtom(sortQueryAtom);
+
+  // SWR kullanarak veri çekmek için anahtar olarak sortQuery kullanın
+  const { data, error, isLoading } = useSWR(
+    [`products`, sortQuery], // Anahtar değiştiğinde yeniden yükleme için diziyi kullanın
+    () => fetcher(supabase, PAGE_COUNT, sortQuery)
   );
 
   // Update the products atom right after SWR fetches
@@ -119,7 +125,7 @@ export default function Products() {
           ref={containerRef}
           className="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] w-full gap-[1rem] mt-[1rem]"
         >
-          {/* {productCards} */}
+          {productCards}
         </div>
       </motion.div>
     </AnimatePresence>

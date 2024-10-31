@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { sortQueryAtom } from "../atoms/sortQueryAtom";
+import { useAtom } from "jotai";
 
 export default function CategoriesSortNavBar() {
   const [sortMenuOpened, setSortMenuOpened] = useState(false);
@@ -13,8 +15,8 @@ export default function CategoriesSortNavBar() {
 
   // const sortMenu = <div className="absolute">SoretMenunununu</div>;
   const sortOptions = [
-    { name: "Fiyata Göre Artan", query: "?sort_by=price_asc" },
-    { name: "Fiyata Göre Azalan", query: "?sort_by=price_desc" },
+    { name: "Fiyata Göre Artan", query: "asc" },
+    { name: "Fiyata Göre Azalan", query: "desc" },
   ];
 
   // Detecks Clicks to close Dropdown Sorting Menu
@@ -31,10 +33,19 @@ export default function CategoriesSortNavBar() {
     };
   }, [sortMenuOpened]);
 
+  // Update atom for fething sorted products
+  const [, setSortQuery] = useAtom(sortQueryAtom);
+  const handleSortQuery = (mode: string) => {
+    setSortQuery(mode);
+  };
+
   return (
     <div className="text-lg flex w-full max-w-[62rem] justify-between items-center text-center pt-[1rem] relative">
       <p>{currentCategory} → Tüm Ürünler</p>
-      <div className="sort-menu hover:text-cyan-700 cursor-pointer" onClick={handleSortMenu}>
+      <div
+        className="sort-menu hover:text-cyan-700 cursor-pointer"
+        onClick={handleSortMenu}
+      >
         Sırala ↓
       </div>
       <AnimatePresence>
@@ -52,13 +63,13 @@ export default function CategoriesSortNavBar() {
           >
             {sortOptions.map((opt) => {
               return (
-                <Link
-                  className="hover:text-cyan-700"
+                <div
+                  onClick={() => handleSortQuery(opt.query)}
+                  className="hover:text-cyan-700 cursor-pointer"
                   key={opt.query}
-                  to={opt.query}
                 >
                   {opt.name}
-                </Link>
+                </div>
               );
             })}
           </motion.div>
