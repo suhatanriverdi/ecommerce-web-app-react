@@ -8,7 +8,7 @@ import { fetcher } from "../supabase/utils/fetcher";
 import { useRef, useEffect, useState } from "react";
 import { debounce } from "lodash";
 import { useAtom } from "jotai";
-import { productsAtom } from "./productsAtom";
+import { productsAtom } from "../atoms/productsAtom";
 
 export default function Products() {
   // Jotai State Management
