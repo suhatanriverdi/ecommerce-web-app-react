@@ -122,7 +122,7 @@ export default function Products() {
 
         <div
           ref={containerRef}
-          className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] w-full gap-[1rem] mt-[1rem]"
+          className="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] w-full gap-[1rem] mt-[1rem]"
         >
           {productCards}
         </div>
