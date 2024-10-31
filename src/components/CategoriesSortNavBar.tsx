@@ -34,7 +34,7 @@ export default function CategoriesSortNavBar() {
   return (
     <div className="text-lg flex w-full max-w-[62rem] justify-between items-center text-center pt-[1rem] relative">
       <p>{currentCategory} → Tüm Ürünler</p>
-      <div className="sort-menu cursor-pointer" onClick={handleSortMenu}>
+      <div className="sort-menu hover:text-cyan-700 cursor-pointer" onClick={handleSortMenu}>
         Sırala ↓
       </div>
       <AnimatePresence>

@@ -119,7 +119,7 @@ export default function Products() {
           ref={containerRef}
           className="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] w-full gap-[1rem] mt-[1rem]"
         >
-          {productCards}
+          {/* {productCards} */}
         </div>
       </motion.div>
     </AnimatePresence>
