@@ -12,7 +12,8 @@ export default function Home() {
     <AnimatePresence>
       {/* Fixed Navigation Component */}
       <motion.div
-        className="fixed top-0 bg-white px-[2rem] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify"
+        key="mot-1"
+        className="fixed -top-[1px] bg-white px-[2rem] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify"
         initial={{ y: 1000, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 1000, opacity: 0 }}
@@ -26,6 +27,7 @@ export default function Home() {
 
       {/* Sticky Header for Products */}
       <motion.div
+        key="mot-2"
         className="sticky top-[60px] backdrop-blur-md bg-white bg-opacity-75 px-[2rem] mt-[120px] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify"
         initial={{ y: 1000, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
