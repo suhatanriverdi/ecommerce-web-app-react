@@ -1,6 +1,5 @@
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage, lazyload } from "@cloudinary/react";
-import Product from "../supabase/model/Product";
 import { removeBackground } from "@cloudinary/url-gen/actions/effect";
 import Loading from "./Loading";
 
@@ -8,7 +7,8 @@ const ClodinaryImg = ({
   img_url: publicID,
   isLoading,
   setIsLoading,
-}: Product & {
+}: {
+  img_url: string;
   isLoading: boolean;
   setIsLoading: (loading: boolean) => void;
 }) => {
