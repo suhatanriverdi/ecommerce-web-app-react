@@ -115,11 +115,6 @@ export default function Products() {
           ease: "anticipate",
         }}
       >
-        {/* <div className="w-screen sticky top-[59px] backdrop-blur-md pb-[1rem] z-10 flex max-w-[62rem] justify-between items-center text-center pt-[20px] text-base">
-          <p>Erkek → Tüm Ürünler</p>
-          <p>Sırala</p>
-        </div> */}
-
         <div
           ref={containerRef}
           className="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] w-full gap-[1rem] mt-[1rem]"
