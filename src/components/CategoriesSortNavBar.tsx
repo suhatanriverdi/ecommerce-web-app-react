@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { sortQueryAtom } from "../atoms/sortQueryAtom";
+import { categoryQueryAtom } from "../atoms/categoryQueryAtom";
 import DropDownMenu from "./DropDownMenu";
 
 export default function CategoriesSortNavBar() {
@@ -11,9 +12,22 @@ export default function CategoriesSortNavBar() {
     { name: "Fiyata Göre Azalan", query: "desc" },
   ];
 
+  const categoryOptions = [
+    { name: "hoodies", query: "hoodies" },
+    { name: "tshirts", query: "tshirts" },
+    { name: "sweatpanths", query: "sweatpanths" },
+  ];
+
   return (
     <div className="text-lg flex w-full max-w-[62rem] justify-between items-center text-center pt-[1rem] relative">
-      <p>{currentCategory} → Tüm Ürünler</p>
+      <div className="flex">
+        <p>{currentCategory}&nbsp;→&nbsp;</p>
+        <DropDownMenu
+          queryAtom={categoryQueryAtom}
+          menuTitle={"Kategoriler"}
+          items={categoryOptions}
+        />
+      </div>
       <DropDownMenu
         queryAtom={sortQueryAtom}
         menuTitle={"Sırala"}

@@ -36,7 +36,7 @@ function DropDownMenu({ queryAtom, menuTitle, items }: DropDownMenuProps) {
   };
 
   return (
-    <>
+    <div className="relative">
       <div
         className="sort-menu hover:text-cyan-700 cursor-pointer"
         onClick={handleMenuOpened}
@@ -54,13 +54,13 @@ function DropDownMenu({ queryAtom, menuTitle, items }: DropDownMenuProps) {
               duration: 0.2,
               ease: "anticipate",
             }}
-            className="text-lg shadow-[0px_0px_5px_1px_rgba(0,_0,_0,_0.1)] sort-menu flex flex-col justify-start text-left items-start absolute right-0 top-[60px] z-20 w-auto h-auto p-3 backdrop-blur bg-white bg-opacity-95"
+            className="text-lg shadow-[0px_0px_5px_1px_rgba(0,_0,_0,_0.1)] sort-menu flex flex-col justify-start text-left items-start absolute top-[40px] right-0 z-20 p-3 backdrop-blur bg-white bg-opacity-95"
           >
             {items.map((item) => {
               return (
                 <div
                   onClick={() => handleSetQuery(item.query)}
-                  className="hover:text-cyan-700 cursor-pointer"
+                  className="hover:text-cyan-700 cursor-pointer w-max"
                   key={item.query}
                 >
                   {item.name}
@@ -70,7 +70,7 @@ function DropDownMenu({ queryAtom, menuTitle, items }: DropDownMenuProps) {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </>
+    </div>
   );
 }
 
