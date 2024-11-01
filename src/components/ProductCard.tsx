@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Product from "../supabase/model/Product";
 import ClodinaryImg from "./ClodinaryImg";
+import Product from "../supabase/model/Product";
 
 export default function ProductCard({ title, desc, price, img_url }: Product) {
   const [isLoading, setIsLoading] = useState(true);

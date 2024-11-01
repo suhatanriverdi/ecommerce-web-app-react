@@ -1,49 +1,25 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { sortQueryAtom } from "../atoms/sortQueryAtom";
-import { useAtom } from "jotai";
+import DropDownMenu from "./DropDownMenu";
 
 export default function CategoriesSortNavBar() {
-  const [sortMenuOpened, setSortMenuOpened] = useState(false);
-  const handleSortMenu = () => {
-    setSortMenuOpened((prev) => !prev);
-  };
-
   const { gender } = useParams();
   const currentCategory: string = gender === "men" ? "Erkek" : "Kadın";
 
-  // const sortMenu = <div className="absolute">SoretMenunununu</div>;
   const sortOptions = [
     { name: "Fiyata Göre Artan", query: "asc" },
     { name: "Fiyata Göre Azalan", query: "desc" },
   ];
 
-  // Detecks Clicks to close Dropdown Sorting Menu
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (sortMenuOpened && !event.target.closest(".sort-menu")) {
-        setSortMenuOpened(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [sortMenuOpened]);
-
-  // Update atom for fething sorted products
-  const [, setSortQuery] = useAtom(sortQueryAtom);
-  const handleSortQuery = (mode: string) => {
-    setSortQuery(mode);
-    handleSortMenu();
-  };
-
   return (
     <div className="text-lg flex w-full max-w-[62rem] justify-between items-center text-center pt-[1rem] relative">
       <p>{currentCategory} → Tüm Ürünler</p>
-      <div
+      <DropDownMenu
+        queryAtom={sortQueryAtom}
+        menuTitle={"Sırala"}
+        items={sortOptions}
+      />
+      {/* <div
         className="sort-menu hover:text-cyan-700 cursor-pointer"
         onClick={handleSortMenu}
       >
@@ -75,7 +51,7 @@ export default function CategoriesSortNavBar() {
             })}
           </motion.div>
         ) : null}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </div>
   );
 }

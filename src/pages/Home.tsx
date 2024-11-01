@@ -43,7 +43,7 @@ export default function Home() {
       {/* Main Content Container */}
       <div className="w-full flex flex-col px-[2rem] items-center justify-center text-justify backdrop-blur-md bg-white bg-opacity-100">
         {/* Products Container - No Animation */}
-        <Products />
+        {/* <Products /> */}
 
         {/* Back Link */}
         <div className="mt-60 max-w-[62rem]">

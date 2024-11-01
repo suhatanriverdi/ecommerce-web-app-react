@@ -10,6 +10,7 @@ import { debounce } from "lodash";
 import { useAtom } from "jotai";
 import { productsAtom } from "../atoms/productsAtom";
 import { sortQueryAtom } from "../atoms/sortQueryAtom";
+import { categoryQueryAtom } from "../atoms/categoryQueryAtom";
 
 export default function Products() {
   // Jotai State Management
@@ -76,9 +77,13 @@ export default function Products() {
   // Sort Query Atom
   const [sortQuery] = useAtom(sortQueryAtom);
 
+  // Category Query Atom
+  const [category] = useAtom(categoryQueryAtom);
+
+  // Fetches data based on given queries
   const { data, error, isLoading } = useSWR(
     [`products`, sortQuery], // Whenever sortQuery changes, re-fetch
-    () => fetcher(supabase, PAGE_COUNT, sortQuery)
+    () => fetcher(supabase, PAGE_COUNT, sortQuery, category)
   );
 
   // Update the products atom right after SWR fetches

@@ -4,13 +4,19 @@ import { type SupabaseClient } from "@supabase/supabase-js";
 export const fetcher = async (
   supabase: SupabaseClient,
   PAGE_COUNT: number,
-  sortOrder: string | null = null // Default value as null
+  sortMode: string | null = null, // Default value as null
+  category: string | null = null // Default value as null
 ) => {
   let query = supabase.from("products").select("*").limit(PAGE_COUNT);
 
+  // If category query is given, filter by that single category
+  if (category) {
+    query = query.eq("category", category); // Use .eq() for a single category
+  }
+
   // If sort query is given
-  if (sortOrder) {
-    query = query.order("price", { ascending: sortOrder === "asc" });
+  if (sortMode) {
+    query = query.order("price", { ascending: sortMode === "asc" });
   }
 
   const { data: products, error } = await query;
