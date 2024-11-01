@@ -19,39 +19,6 @@ export default function CategoriesSortNavBar() {
         menuTitle={"Sırala"}
         items={sortOptions}
       />
-      {/* <div
-        className="sort-menu hover:text-cyan-700 cursor-pointer"
-        onClick={handleSortMenu}
-      >
-        Sırala ↓
-      </div>
-      <AnimatePresence>
-        {sortMenuOpened ? (
-          <motion.div
-            key="sort"
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -20, opacity: 0 }}
-            transition={{
-              duration: 0.2,
-              ease: "anticipate",
-            }}
-            className="text-lg shadow-[0px_0px_5px_1px_rgba(0,_0,_0,_0.1)] sort-menu flex flex-col justify-start text-left items-start absolute right-0 top-[60px] z-20 w-auto h-auto p-3 backdrop-blur bg-white bg-opacity-95"
-          >
-            {sortOptions.map((opt) => {
-              return (
-                <div
-                  onClick={() => handleSortQuery(opt.query)}
-                  className="hover:text-cyan-700 cursor-pointer"
-                  key={opt.query}
-                >
-                  {opt.name}
-                </div>
-              );
-            })}
-          </motion.div>
-        ) : null}
-      </AnimatePresence> */}
     </div>
   );
 }
