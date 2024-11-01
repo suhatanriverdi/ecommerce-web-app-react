@@ -13,9 +13,9 @@ export default function CategoriesSortNavBar() {
   ];
 
   const categoryOptions = [
-    { name: "hoodies", query: "hoodies" },
-    { name: "tshirts", query: "tshirts" },
-    { name: "sweatpanths", query: "sweatpanths" },
+    { name: "Kapüşonlu", query: "hoodies" },
+    { name: "Tişört", query: "tshirts" },
+    { name: "Eşofman", query: "sweatpanths" },
   ];
 
   return (
