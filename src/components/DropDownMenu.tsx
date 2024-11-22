@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { PrimitiveAtom, useAtom } from "jotai";
 import { useEffect, useState } from "react";
+import { scrollOffsetAtom } from "../atoms/scrollOffsetAtom";
+import { DEFAULT_OFFSET } from "../config/consts.ts";
 
 type DropDownMenuProps = {
   queryAtom: PrimitiveAtom<string | null>;
@@ -10,11 +12,13 @@ type DropDownMenuProps = {
 
 function DropDownMenu({ queryAtom, menuTitle, items }: DropDownMenuProps) {
   const [menuOpened, setMenuOpened] = useState(false);
+  const [, setOffset] = useAtom(scrollOffsetAtom);
+
   const handleMenuOpened = () => {
     setMenuOpened((prev) => !prev);
   };
 
-  // Detecks Clicks to close Dropdown Sorting Menu
+  // Detects Clicks to close Dropdown Sorting Menu
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuOpened && !(event.target as HTMLElement).closest(".sort-menu")) {
@@ -28,11 +32,13 @@ function DropDownMenu({ queryAtom, menuTitle, items }: DropDownMenuProps) {
     };
   }, [menuOpened]);
 
-  // Update atom for fething sorted products
+  // Update atom for fetching sorted products
   const [, setQuery] = useAtom(queryAtom);
   const handleSetQuery = (mode: string) => {
     setQuery(mode);
     handleMenuOpened();
+    // Reset offset here
+    setOffset(DEFAULT_OFFSET);
   };
 
   return (
@@ -41,7 +47,7 @@ function DropDownMenu({ queryAtom, menuTitle, items }: DropDownMenuProps) {
         className="sort-menu hover:text-cyan-700 cursor-pointer"
         onClick={handleMenuOpened}
       >
-        {menuTitle} ↓
+        {menuTitle}
       </div>
       <AnimatePresence>
         {menuOpened ? (
@@ -61,7 +67,7 @@ function DropDownMenu({ queryAtom, menuTitle, items }: DropDownMenuProps) {
                 <div
                   onClick={() => handleSetQuery(item.query)}
                   className="hover:text-cyan-700 cursor-pointer w-max"
-                  key={item.query}
+                  key={item.name}
                 >
                   {item.name}
                 </div>

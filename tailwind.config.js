@@ -8,5 +8,5 @@ export default {
       desktop: "1024px",
     },
   },
-  plugins: [],
+  plugins: ["prettier-plugin-tailwindcss"],
 };

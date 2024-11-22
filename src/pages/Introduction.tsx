@@ -65,14 +65,14 @@ export default function Introduction() {
                   screenWidth >= 1024
                     ? "800px"
                     : screenWidth < 1024 && screenWidth >= 480
-                    ? "450px"
-                    : "250px",
+                      ? "450px"
+                      : "250px",
                 height:
                   screenWidth >= 1024
                     ? "1000px"
                     : screenWidth < 1024 && screenWidth >= 480
-                    ? "800px"
-                    : "600px",
+                      ? "800px"
+                      : "600px",
               }}
               transition={{
                 duration: 3,
@@ -93,14 +93,14 @@ export default function Introduction() {
                   screenWidth >= 1024
                     ? "800px"
                     : screenWidth < 1024 && screenWidth >= 480
-                    ? "450px"
-                    : "250px",
+                      ? "450px"
+                      : "250px",
                 height:
                   screenWidth >= 1024
                     ? "1000px"
                     : screenWidth < 1024 && screenWidth >= 480
-                    ? "800px"
-                    : "600px",
+                      ? "800px"
+                      : "600px",
               }}
               transition={{
                 duration: 3,

@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useSupabase } from "../supabase/SupabaseContext";
-import Product from "../supabase/model/Product";
+import Product from "../supabase/model/Product.ts";
 import ProductCard from "../components/ProductCard";
 import useSWR from "swr";
 import NotFound from "../pages/NotFound";
@@ -11,6 +11,7 @@ import { useAtom } from "jotai";
 import { productsAtom } from "../atoms/productsAtom";
 import { sortQueryAtom } from "../atoms/sortQueryAtom";
 import { categoryQueryAtom } from "../atoms/categoryQueryAtom";
+import { scrollOffsetAtom } from "../atoms/scrollOffsetAtom";
 
 export default function Products() {
   // Jotai State Management
@@ -19,10 +20,16 @@ export default function Products() {
   // Use the SWR hook for data fetching
   const supabase = useSupabase();
 
+  // Sort Query Atom
+  const [sortQuery] = useAtom(sortQueryAtom);
+
+  // Category Query Atom
+  const [categoryQuery] = useAtom(categoryQueryAtom);
+
   // Scrolling
   const PAGE_COUNT = 15;
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [offset, setOffset] = useState(1);
+  const [offset, setOffset] = useAtom(scrollOffsetAtom);
   const [isInView, setIsInView] = useState(false);
 
   const handleScroll = () => {
@@ -34,23 +41,30 @@ export default function Products() {
     }
   };
 
-  const fetchProducts = async (offset: number) => {
+  const fetchProducts = async () => {
     const from = offset * PAGE_COUNT;
     const to = from + PAGE_COUNT - 1;
 
-    const { data } = await supabase
-      .from("products")
-      .select("*")
-      .range(from, to);
+    console.log("offset: ", offset, "f from: ", from, "to: ", to);
+
+    const data = await fetcher(
+      supabase,
+      PAGE_COUNT,
+      from,
+      to,
+      sortQuery,
+      categoryQuery,
+    );
 
     return data;
   };
 
-  const loadMoreProducts = async (offset: number) => {
+  const loadMoreProducts = async () => {
     // Every time we fetch, we want to increase
     // the offset to load fresh Products
+    // TODO, RESET THIS AFTER SORT or QUERY CATEGORY
     setOffset((prev) => prev + 1);
-    const newProducts = await fetchProducts(offset);
+    const newProducts = await fetchProducts();
     // Merge new Products with all previously loaded
     setProducts((prevProducts) => [
       ...(prevProducts || []),
@@ -61,7 +75,7 @@ export default function Products() {
   // Infinite Scroll, to load more
   useEffect(() => {
     if (isInView) {
-      loadMoreProducts(offset);
+      loadMoreProducts();
     }
   }, [isInView]);
 
@@ -74,24 +88,50 @@ export default function Products() {
     };
   }, []);
 
-  // Sort Query Atom
-  const [sortQuery] = useAtom(sortQueryAtom);
+  /*
+    TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
+    global jotai kullandıktan sonra
+    cateoriler altından veya sırala altından tıklayıp fetch yapınca
+    ürünler iki kere geliyor
+    useEffect, jotaiState, SWR birbiriyle çakışıyor olabilir!
+    KONTROL Edilecek!
+  */
 
-  // Category Query Atom
-  const [category] = useAtom(categoryQueryAtom);
+  // Effect to reset offset when sortQuery or categoryQuery changes
+  // useEffect(() => {
+  //   // Reset the offset to 0
+  //   setOffset(DEFAULT_OFFSET);
+  // }, [sortQuery, categoryQuery]); // Dependencies include sortQuery and categoryQuery
 
+  /**
+   *   // Only fetch cars with cursor based infinite scroll only if searchQuery is empty
+   *   config { data, error, isLoading, setSize } = useSWRInfinite<
+   *     PaginatedResponse<Car>
+   *   >((pageIndex, previousPageData) => {
+   *     // Skip fetching if there's a search query
+   *     if (searchQuery !== "") {
+   *       return null;
+   *     }
+   *     return getKey(pageIndex, previousPageData, sortQuery, sortField);
+   *   }, fetcher);
+   * */
   // Fetches data based on given queries
-  const { data, error, isLoading } = useSWR(
-    [`products`, sortQuery], // Whenever sortQuery changes, re-fetch
-    () => fetcher(supabase, PAGE_COUNT, sortQuery, category)
+  const { error, isLoading } = useSWR(
+    // Whenever sortQuery changes, re-fetch
+    [sortQuery, categoryQuery],
+
+    // Fetcher Function
+    () => fetcher(supabase, PAGE_COUNT, null, null, sortQuery, categoryQuery),
+    // Update the products atom right after SWR fetches
+    {
+      onSuccess: (data) => {
+        setProducts(data);
+      },
+    },
   );
 
-  // Update the products atom right after SWR fetches
-  useEffect(() => {
-    if (data) {
-      setProducts(data);
-    }
-  }, [data]);
+  // TODO
+  console.log(products);
 
   // TODO
   // Loading state, this is needed otherwise will produce an error

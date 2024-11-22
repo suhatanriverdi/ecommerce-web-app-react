@@ -13,18 +13,21 @@ export default function CategoriesSortNavBar() {
   ];
 
   const categoryOptions = [
-    { name: "Kapüşonlu", query: "hoodies" },
-    { name: "Tişört", query: "tshirts" },
-    { name: "Eşofman", query: "sweatpanths" },
+    { name: "Tüm Ürünler", query: "" },
+    { name: "Kapüşonlu", query: "hoodie" },
+    { name: "Tişört", query: "tshirt" },
+    { name: "Eşofman", query: "sweatpants" },
   ];
 
   return (
     <div className="text-lg flex w-full max-w-[62rem] justify-between items-center text-center pt-[1rem] relative">
       <div className="flex">
-        <p>{currentCategory}&nbsp;→&nbsp;</p>
+        <p>
+          {currentCategory}&nbsp;{">"}&nbsp;
+        </p>
         <DropDownMenu
           queryAtom={categoryQueryAtom}
-          menuTitle={"Kategoriler"}
+          menuTitle={"Tüm Ürünler"}
           items={categoryOptions}
         />
       </div>
