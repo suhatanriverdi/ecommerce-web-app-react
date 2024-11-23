@@ -16,8 +16,6 @@ export const fetcher = async (
     query = query.range(from, to);
   }
 
-  // console.log("query: ", query);
-
   // If category query is given, filter by that single category
   if (categoryQuery) {
     query = query.eq("category", categoryQuery);
