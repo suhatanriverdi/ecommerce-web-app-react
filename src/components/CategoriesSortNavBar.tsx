@@ -2,10 +2,16 @@ import { useParams } from "react-router-dom";
 import { sortQueryAtom } from "../atoms/sortQueryAtom";
 import { categoryQueryAtom } from "../atoms/categoryQueryAtom";
 import DropDownMenu from "./DropDownMenu";
+import { useState } from "react";
 
 export default function CategoriesSortNavBar() {
   const { gender } = useParams();
   const currentCategory: string = gender === "men" ? "Erkek" : "Kadın";
+
+  // Sort Drop Down Button
+  const [sortMenuOpen, setSortMenuOpen] = useState(false);
+  // Category Drop Down Button
+  const [categoryMenuOpen, setCategoryMenuOpen] = useState(false);
 
   const sortOptions = [
     { name: "Fiyata Göre Artan", query: "asc" },
@@ -29,12 +35,18 @@ export default function CategoriesSortNavBar() {
           queryAtom={categoryQueryAtom}
           menuTitle={"Tüm Ürünler"}
           items={categoryOptions}
+          menuOpened={categoryMenuOpen}
+          setOtherMenuOpened={setSortMenuOpen}
+          setMenuOpened={setCategoryMenuOpen}
         />
       </div>
       <DropDownMenu
         queryAtom={sortQueryAtom}
         menuTitle={"Sırala"}
         items={sortOptions}
+        menuOpened={sortMenuOpen}
+        setOtherMenuOpened={setCategoryMenuOpen}
+        setMenuOpened={setSortMenuOpen}
       />
     </div>
   );

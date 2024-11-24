@@ -14,9 +14,9 @@ export default function ProductCard({ title, desc, price, img_url }: Product) {
       />
       {!isLoading && (
         <>
-          <h2 className="font-bold">{title}</h2>
-          <p className="text-gray-600">{desc}</p>
-          <p className="text-green-500 text-6xl justify-self-center">
+          <h2 className="font-bold text-xl">{title}</h2>
+          <p className="text-gray-400">{desc}</p>
+          <p className="text-lime-500 text- text-6xl justify-self-center">
             {price} ₺
           </p>
         </>

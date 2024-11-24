@@ -37,7 +37,7 @@ export default function Products() {
       const container = containerRef.current;
       const { bottom } = container.getBoundingClientRect();
       const { innerHeight } = window;
-      setIsInView((prevIsInView) => bottom <= innerHeight);
+      setIsInView(() => bottom <= innerHeight);
     }
   };
 
@@ -45,7 +45,7 @@ export default function Products() {
     const from = offset * PAGE_COUNT;
     const to = from + PAGE_COUNT - 1;
 
-    console.log("offset: ", offset, "f from: ", from, "to: ", to);
+    // console.log("offset: ", offset, "f from: ", from, "to: ", to);
 
     const data = await fetcher(
       supabase,
@@ -88,33 +88,6 @@ export default function Products() {
     };
   }, []);
 
-  /*
-    TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
-    global jotai kullandıktan sonra
-    cateoriler altından veya sırala altından tıklayıp fetch yapınca
-    ürünler iki kere geliyor
-    useEffect, jotaiState, SWR birbiriyle çakışıyor olabilir!
-    KONTROL Edilecek!
-  */
-
-  // Effect to reset offset when sortQuery or categoryQuery changes
-  // useEffect(() => {
-  //   // Reset the offset to 0
-  //   setOffset(DEFAULT_OFFSET);
-  // }, [sortQuery, categoryQuery]); // Dependencies include sortQuery and categoryQuery
-
-  /**
-   *   // Only fetch cars with cursor based infinite scroll only if searchQuery is empty
-   *   config { data, error, isLoading, setSize } = useSWRInfinite<
-   *     PaginatedResponse<Car>
-   *   >((pageIndex, previousPageData) => {
-   *     // Skip fetching if there's a search query
-   *     if (searchQuery !== "") {
-   *       return null;
-   *     }
-   *     return getKey(pageIndex, previousPageData, sortQuery, sortField);
-   *   }, fetcher);
-   * */
   // Fetches data based on given queries
   const { error, isLoading } = useSWR(
     // Whenever sortQuery changes, re-fetch
@@ -131,7 +104,7 @@ export default function Products() {
   );
 
   // TODO
-  console.log(products);
+  // console.log(products);
 
   // TODO
   // Loading state, this is needed otherwise will produce an error

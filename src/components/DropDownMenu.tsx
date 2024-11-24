@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { PrimitiveAtom, useAtom } from "jotai";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { scrollOffsetAtom } from "../atoms/scrollOffsetAtom";
 import { DEFAULT_OFFSET } from "../config/consts.ts";
 
@@ -8,14 +8,26 @@ type DropDownMenuProps = {
   queryAtom: PrimitiveAtom<string | null>;
   menuTitle: string;
   items: { query: string; name: string }[];
+  menuOpened: boolean;
+  setOtherMenuOpened: React.Dispatch<React.SetStateAction<boolean>>;
+  setMenuOpened: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function DropDownMenu({ queryAtom, menuTitle, items }: DropDownMenuProps) {
-  const [menuOpened, setMenuOpened] = useState(false);
+function DropDownMenu({
+  queryAtom,
+  menuTitle,
+  items,
+  menuOpened,
+  setOtherMenuOpened,
+  setMenuOpened,
+}: DropDownMenuProps) {
+  const [menuTitleState, setMenuTitle] = useState(menuTitle);
   const [, setOffset] = useAtom(scrollOffsetAtom);
 
   const handleMenuOpened = () => {
     setMenuOpened((prev) => !prev);
+    // Close the other menu
+    setOtherMenuOpened(false);
   };
 
   // Detects Clicks to close Dropdown Sorting Menu
@@ -34,8 +46,10 @@ function DropDownMenu({ queryAtom, menuTitle, items }: DropDownMenuProps) {
 
   // Update atom for fetching sorted products
   const [, setQuery] = useAtom(queryAtom);
-  const handleSetQuery = (mode: string) => {
+  const handleSetQuery = (categoryTitle: string, mode: string) => {
     setQuery(mode);
+    // Update the menu title for categories
+    setMenuTitle(categoryTitle);
     handleMenuOpened();
     // Reset offset here
     setOffset(DEFAULT_OFFSET);
@@ -47,7 +61,7 @@ function DropDownMenu({ queryAtom, menuTitle, items }: DropDownMenuProps) {
         className="sort-menu hover:text-cyan-700 cursor-pointer"
         onClick={handleMenuOpened}
       >
-        {menuTitle}
+        {menuTitleState}
       </div>
       <AnimatePresence>
         {menuOpened ? (
@@ -65,7 +79,7 @@ function DropDownMenu({ queryAtom, menuTitle, items }: DropDownMenuProps) {
             {items.map((item) => {
               return (
                 <div
-                  onClick={() => handleSetQuery(item.query)}
+                  onClick={() => handleSetQuery(item.name, item.query)}
                   className="hover:text-cyan-700 cursor-pointer w-max"
                   key={item.name}
                 >
