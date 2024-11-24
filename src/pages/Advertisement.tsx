@@ -6,10 +6,17 @@ import {
 } from "framer-motion";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAtom } from "jotai/index";
+import { genderQueryAtom } from "../atoms/genderQueryAtom.tsx";
 
 export default function Advertisement() {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
+
+  const [, setGenderQuery] = useAtom(genderQueryAtom);
+  const handleGenderQuery = (gender: string) => {
+    setGenderQuery(gender);
+  };
 
   // Parallax Effect
   const container = useRef(null);
@@ -21,6 +28,7 @@ export default function Advertisement() {
 
   const handleShow = (gender: string) => {
     setShow(false);
+    handleGenderQuery(gender);
     setTimeout(() => {
       navigate(`/home/${gender}`);
     }, 800);

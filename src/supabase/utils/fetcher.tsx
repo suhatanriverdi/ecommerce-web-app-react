@@ -6,14 +6,21 @@ export const fetcher = async (
   PAGE_COUNT: number,
   from: number | null = null,
   to: number | null = null,
-  sortMode: string | null = null, // Default value as null
-  categoryQuery: string | null = null, // Default value as null
+  sortMode: string | null = null,
+  categoryQuery: string | null = null,
+  genderQuery: string | null, // Default value as null
 ) => {
   let query = supabase.from("products").select("*").limit(PAGE_COUNT);
 
   // If this is an infinite scroll type of fetch
   if (from !== null && to !== null) {
     query = query.range(from, to);
+  }
+
+  console.log("FETCHER genderQuery: ", genderQuery);
+  // If gender query is given
+  if (categoryQuery) {
+    query = query.eq("gender", genderQuery);
   }
 
   // If category query is given, filter by that single category

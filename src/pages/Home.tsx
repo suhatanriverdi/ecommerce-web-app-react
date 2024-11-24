@@ -1,12 +1,23 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Products from "../containers/Products";
 
 // Navigation Bar
 import NavBar from "../components/NavBar";
 import CategoriesSortNavBar from "../components/CategoriesSortNavBar";
+import { useAtom } from "jotai/index";
+import { genderQueryAtom } from "../atoms/genderQueryAtom.tsx";
+import { useEffect } from "react";
 
 export default function Home() {
+  const { gender } = useParams();
+  const [, setGenderQuery] = useAtom(genderQueryAtom);
+
+  // Update the genderQuery
+  useEffect(() => {
+    setGenderQuery(gender ?? null);
+  }, [gender, setGenderQuery]);
+
   return (
     <AnimatePresence>
       {/* Fixed Navigation Component */}

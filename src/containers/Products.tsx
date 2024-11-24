@@ -12,6 +12,7 @@ import { productsAtom } from "../atoms/productsAtom";
 import { sortQueryAtom } from "../atoms/sortQueryAtom";
 import { categoryQueryAtom } from "../atoms/categoryQueryAtom";
 import { scrollOffsetAtom } from "../atoms/scrollOffsetAtom";
+import { genderQueryAtom } from "../atoms/genderQueryAtom.tsx";
 
 export default function Products() {
   // Jotai State Management
@@ -19,6 +20,9 @@ export default function Products() {
 
   // Use the SWR hook for data fetching
   const supabase = useSupabase();
+
+  // Gender Query Atom
+  const [genderQuery] = useAtom(genderQueryAtom);
 
   // Sort Query Atom
   const [sortQuery] = useAtom(sortQueryAtom);
@@ -54,15 +58,13 @@ export default function Products() {
       to,
       sortQuery,
       categoryQuery,
+      genderQuery,
     );
 
     return data;
   };
 
   const loadMoreProducts = async () => {
-    // Every time we fetch, we want to increase
-    // the offset to load fresh Products
-    // TODO, RESET THIS AFTER SORT or QUERY CATEGORY
     setOffset((prev) => prev + 1);
     const newProducts = await fetchProducts();
     // Merge new Products with all previously loaded
@@ -91,10 +93,19 @@ export default function Products() {
   // Fetches data based on given queries
   const { error, isLoading } = useSWR(
     // Whenever sortQuery changes, re-fetch
-    [sortQuery, categoryQuery],
+    [sortQuery, categoryQuery, genderQuery],
 
     // Fetcher Function
-    () => fetcher(supabase, PAGE_COUNT, null, null, sortQuery, categoryQuery),
+    () =>
+      fetcher(
+        supabase,
+        PAGE_COUNT,
+        null,
+        null,
+        sortQuery,
+        categoryQuery,
+        genderQuery,
+      ),
     // Update the products atom right after SWR fetches
     {
       onSuccess: (data) => {
