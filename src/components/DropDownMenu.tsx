@@ -58,7 +58,7 @@ function DropDownMenu({
   return (
     <div className="relative">
       <div
-        className="sort-menu hover:text-cyan-700 cursor-pointer"
+        className="sort-menu hover:text-button-bg-dark cursor-pointer"
         onClick={handleMenuOpened}
       >
         {menuTitleState}
@@ -80,7 +80,7 @@ function DropDownMenu({
               return (
                 <div
                   onClick={() => handleSetQuery(item.name, item.query)}
-                  className="hover:text-cyan-700 cursor-pointer w-max"
+                  className="hover:text-button-bg-dark cursor-pointer w-max"
                   key={item.name}
                 >
                   {item.name}
