@@ -1,11 +1,11 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useSupabase } from "../supabase/SupabaseContext";
 import Product from "../supabase/model/Product.ts";
 import ProductCard from "../components/ProductCard";
 import useSWR from "swr";
 import NotFound from "../pages/NotFound";
 import { fetcher } from "../supabase/utils/fetcher";
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { debounce } from "lodash";
 import { useAtom } from "jotai";
 import { productsAtom } from "../atoms/productsAtom";
@@ -35,6 +35,7 @@ export default function Products() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [offset, setOffset] = useAtom(scrollOffsetAtom);
   const [isInView, setIsInView] = useState(false);
+  const [hasMoreProducts, setHasMoreProducts] = useState(true);
 
   const handleScroll = () => {
     if (containerRef.current && typeof window !== "undefined") {
@@ -49,9 +50,7 @@ export default function Products() {
     const from = offset * PAGE_COUNT;
     const to = from + PAGE_COUNT - 1;
 
-    // console.log("offset: ", offset, "f from: ", from, "to: ", to);
-
-    const data = await fetcher(
+    return await fetcher(
       supabase,
       PAGE_COUNT,
       from,
@@ -60,13 +59,17 @@ export default function Products() {
       categoryQuery,
       genderQuery,
     );
-
-    return data;
   };
 
   const loadMoreProducts = async () => {
     setOffset((prev) => prev + 1);
     const newProducts = await fetchProducts();
+
+    // Check if we hit the last page
+    if (newProducts.length < PAGE_COUNT) {
+      setHasMoreProducts(false);
+    }
+
     // Merge new Products with all previously loaded
     setProducts((prevProducts) => [
       ...(prevProducts || []),
@@ -76,7 +79,7 @@ export default function Products() {
 
   // Infinite Scroll, to load more
   useEffect(() => {
-    if (isInView) {
+    if (isInView && hasMoreProducts) {
       loadMoreProducts();
     }
   }, [isInView]);
