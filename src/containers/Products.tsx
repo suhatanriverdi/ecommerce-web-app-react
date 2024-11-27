@@ -94,10 +94,6 @@ export default function Products() {
     };
   }, []);
 
-  // console.log("sortQuery: ", sortQuery);
-  // console.log("categoryQuery: ", categoryQuery);
-  // console.log("genderQuery: ", genderQuery);
-
   // Fetches data based on given queries
   const { error, isLoading } = useSWR(
     // Whenever sortQuery changes, re-fetch

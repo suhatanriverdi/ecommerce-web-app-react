@@ -1,7 +1,6 @@
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage, lazyload } from "@cloudinary/react";
 import { removeBackground } from "@cloudinary/url-gen/actions/effect";
-import Loading from "./Loading";
 
 const ClodinaryImg = ({
   img_url: publicID,
@@ -29,9 +28,7 @@ const ClodinaryImg = ({
     .quality("auto");
 
   return (
-    <div className="flex items-center justify-center min-h-[12rem]">
-      {isLoading && <Loading />}
-
+    <div className="flex items-center justify-center w-full h-full">
       <AdvancedImage
         onLoad={handleImageLoad}
         plugins={[lazyload()]}
@@ -39,7 +36,7 @@ const ClodinaryImg = ({
         className={
           isLoading
             ? "opacity-0"
-            : "opacity-100 transition-opacity duration-400"
+            : "opacity-100 transition-opacity duration-500"
         }
       />
     </div>

@@ -17,9 +17,8 @@ export const fetcher = async (
     query = query.range(from, to);
   }
 
-  console.log("FETCHER genderQuery: ", genderQuery);
   // If gender query is given
-  if (categoryQuery) {
+  if (genderQuery) {
     query = query.eq("gender", genderQuery);
   }
 

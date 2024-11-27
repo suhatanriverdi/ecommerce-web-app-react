@@ -32,6 +32,7 @@ export default function CategoriesSortNavBar() {
           {currentCategory}&nbsp;{">"}&nbsp;
         </p>
         <DropDownMenu
+          isLeft={true}
           queryAtom={categoryQueryAtom}
           menuTitle={"Tüm Ürünler"}
           items={categoryOptions}

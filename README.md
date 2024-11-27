@@ -12,16 +12,16 @@ Below is the schema used for the `products` table:
 
 ### `products` Table
 
-| Column Name  | Data Type  | Description                                           |
-|--------------|------------|-------------------------------------------------------|
-| `id`         | `integer`  | Primary key, auto-incremented                         |
-| `title`      | `string`   | Name of the product (e.g., “Green Cotton T-Shirt”)    |
-| `description`| `text`     | Detailed description of the product                   |
-| `category`   | `string`   | Product category (e.g., “tshirt”, “hoodie”, “sweatpants”) |
-| `price`      | `decimal`  | Price of the product                                  |
-| `gender`     | `string`   | Target gender for the product (e.g., “unisex”, “men”, “women”) |
-| `color`      | `string`   | Color of the product (stored as hex code or color name) |
-| `image_url`  | `string`   | URL of the product image                              |
+| Column Name   | Data Type | Description                                               |
+|---------------|-----------|-----------------------------------------------------------|
+| `id`          | `integer` | Primary key, auto-incremented                             |
+| `title`       | `string`  | Name of the product (e.g., “Green Cotton T-Shirt”)        |
+| `description` | `text`    | Detailed description of the product                       |
+| `category`    | `string`  | Product category (e.g., “tshirt”, “hoodie”, “sweatpants”) |
+| `price`       | `decimal` | Price of the product                                      |
+| `gender`      | `string`  | Target gender for the product (e.g., “men”, “women”)      |
+| `color`       | `string`  | Color of the product (stored as hex code or color name)   |
+| `image_url`   | `string`  | URL of the product image                                  |
 
 ### Sample Product JSON
 
@@ -34,7 +34,7 @@ Here’s a sample product JSON that can be used for seeding the database:
   "description": "High-quality, breathable cotton T-shirt in green.",
   "category": "tshirt",
   "price": 19.99,
-  "gender": "unisex",
+  "gender": "men",
   "color": "#34A853",
   "image_url": "https://example.com/images/tshirt-green.jpg",
 }
