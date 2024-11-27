@@ -13,6 +13,7 @@ import { sortQueryAtom } from "../atoms/sortQueryAtom";
 import { categoryQueryAtom } from "../atoms/categoryQueryAtom";
 import { scrollOffsetAtom } from "../atoms/scrollOffsetAtom";
 import { genderQueryAtom } from "../atoms/genderQueryAtom.tsx";
+import { hasMoreProductsAtom } from "../atoms/hasMoreProductsAtom.tsx";
 
 export default function Products() {
   // Jotai State Management
@@ -35,7 +36,7 @@ export default function Products() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [offset, setOffset] = useAtom(scrollOffsetAtom);
   const [isInView, setIsInView] = useState(false);
-  const [hasMoreProducts, setHasMoreProducts] = useState(true);
+  const [hasMoreProducts, setHasMoreProducts] = useAtom(hasMoreProductsAtom);
 
   const handleScroll = () => {
     if (containerRef.current && typeof window !== "undefined") {
@@ -84,7 +85,7 @@ export default function Products() {
     }
   }, [isInView]);
 
-  // Infinite Scroll
+  // Infinite Scroll Debounce
   useEffect(() => {
     const handleDebouncedScroll = debounce(() => handleScroll(), 200);
     window.addEventListener("scroll", handleDebouncedScroll);
@@ -92,6 +93,10 @@ export default function Products() {
       window.removeEventListener("scroll", handleDebouncedScroll);
     };
   }, []);
+
+  // console.log("sortQuery: ", sortQuery);
+  // console.log("categoryQuery: ", categoryQuery);
+  // console.log("genderQuery: ", genderQuery);
 
   // Fetches data based on given queries
   const { error, isLoading } = useSWR(
@@ -114,11 +119,12 @@ export default function Products() {
       onSuccess: (data) => {
         setProducts(data);
       },
+      revalidateOnFocus: false, // Disable window focus fetch
     },
   );
 
   // TODO
-  // console.log(products);
+  // console.log("data: ", products);
 
   // TODO
   // Loading state, this is needed otherwise will produce an error
