@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Products from "../containers/Products";
 
 // Navigation Bar
@@ -8,10 +8,13 @@ import CategoriesSortNavBar from "../components/CategoriesSortNavBar";
 import { useAtom } from "jotai/index";
 import { genderQueryAtom } from "../atoms/genderQueryAtom.tsx";
 import { useEffect } from "react";
+import ProductDetails from "../containers/ProductDetails";
+import { productDetailsWindowAtom } from "../atoms/productDetailsWindowAtom.tsx";
 
 export default function Home() {
   const { gender } = useParams();
   const [, setGenderQuery] = useAtom(genderQueryAtom);
+  const [isProductDetailsWindowOpened] = useAtom(productDetailsWindowAtom);
 
   // Update the genderQuery
   useEffect(() => {
@@ -52,14 +55,12 @@ export default function Home() {
       </motion.div>
 
       {/* Main Content Container */}
-      <div className="w-full flex flex-col px-[2rem] items-center justify-center text-justify backdrop-blur-md bg-white bg-opacity-100">
-        {/* Products Container - No Animation */}
-        <Products />
+      <div className="w-full flex flex-col px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
+        {!isProductDetailsWindowOpened && <Products />}
+      </div>
 
-        {/* Back Link */}
-        <div className="mt-60 max-w-[62rem]">
-          <Link to="/advertisement">GO BACK</Link>
-        </div>
+      <div className="w-full flex px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
+        {isProductDetailsWindowOpened && <ProductDetails />}
       </div>
     </AnimatePresence>
   );
