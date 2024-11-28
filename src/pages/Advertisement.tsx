@@ -31,7 +31,7 @@ export default function Advertisement() {
     handleGenderQuery(gender);
     setTimeout(() => {
       navigate(`/home/${gender}`);
-    }, 800);
+    }, 1000);
   };
 
   return (
@@ -44,7 +44,7 @@ export default function Advertisement() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 1000, opacity: 0 }}
           transition={{
-            duration: 0.8,
+            duration: 1,
             ease: "anticipate",
           }}
         >

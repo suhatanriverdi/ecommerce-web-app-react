@@ -32,60 +32,39 @@ export default function Home() {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 1000, opacity: 0 }}
         transition={{
-          duration: 0.4,
+          duration: 1,
           ease: "anticipate",
         }}
       >
         <NavBar />
+        {/* Sticky Header for Products */}
+        {!isProductDetailsWindowOpened && (
+          <div>
+            {/* Navigation Bar for Categories & Sorting */}
+            <div className="sticky top-[59px] backdrop-blur-md bg-white bg-opacity-75 px-[2rem] mt-[120px] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify">
+              <CategoriesSortNavBar />
+            </div>
+
+            {/* Main Content Container */}
+            <div className="w-full flex flex-col px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
+              <Products />
+            </div>
+          </div>
+        )}
+
+        {/* Sticky Header for Products */}
+        {isProductDetailsWindowOpened && (
+          <div>
+            <div className="sticky top-[59px] backdrop-blur-md bg-white bg-opacity-75 px-[2rem] mt-[120px] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify">
+              {/* Navigation Bar for Product Details */}
+              <ProductDetailsNavBar />
+            </div>
+            <div className="w-full flex flex-col px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
+              <ProductDetails />
+            </div>
+          </div>
+        )}
       </motion.div>
-
-      {/* Sticky Header for Products */}
-      {!isProductDetailsWindowOpened && (
-        <motion.div
-          key="mot-2"
-          initial={{ y: 1000, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 1000, opacity: 0 }}
-          transition={{
-            duration: 0.4,
-            ease: "anticipate",
-          }}
-        >
-          {/* Navigation Bar for Categories & Sorting */}
-          <div className="sticky top-[59px] backdrop-blur-md bg-white bg-opacity-75 px-[2rem] mt-[120px] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify">
-            <CategoriesSortNavBar />
-          </div>
-
-          {/* Main Content Container */}
-          <div className="w-full flex flex-col px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
-            <Products />
-          </div>
-        </motion.div>
-      )}
-
-      {/* Sticky Header for Products */}
-      {isProductDetailsWindowOpened && (
-        <motion.div
-          key="mot-3"
-          className="sticky top-[59px] backdrop-blur-md bg-white bg-opacity-75 px-[2rem] mt-[120px] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify"
-          initial={{ y: 1000, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 1000, opacity: 0 }}
-          transition={{
-            duration: 0.4,
-            ease: "anticipate",
-          }}
-        >
-          {/* Navigation Bar for Product Details */}
-          <ProductDetailsNavBar />
-        </motion.div>
-      )}
-
-      {isProductDetailsWindowOpened && (
-        <div className="w-full flex flex-col px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
-          <ProductDetails />
-        </div>
-      )}
     </AnimatePresence>
   );
 }
