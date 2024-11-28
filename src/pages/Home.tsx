@@ -10,6 +10,7 @@ import { genderQueryAtom } from "../atoms/genderQueryAtom.tsx";
 import { useEffect } from "react";
 import ProductDetails from "../containers/ProductDetails";
 import { productDetailsWindowAtom } from "../atoms/productDetailsWindowAtom.tsx";
+import ProductDetailsNavBar from "../components/ProductDetailsNavBar.tsx";
 
 export default function Home() {
   const { gender } = useParams();
@@ -31,7 +32,7 @@ export default function Home() {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 1000, opacity: 0 }}
         transition={{
-          duration: 0.8,
+          duration: 0.4,
           ease: "anticipate",
         }}
       >
@@ -39,30 +40,49 @@ export default function Home() {
       </motion.div>
 
       {/* Sticky Header for Products */}
-      <motion.div
-        key="mot-2"
-        className="sticky top-[59px] backdrop-blur-md bg-white bg-opacity-75 px-[2rem] mt-[120px] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify"
-        initial={{ y: 1000, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 1000, opacity: 0 }}
-        transition={{
-          duration: 0.8,
-          ease: "anticipate",
-        }}
-      >
-        {/* Navigation Bar for Categories & Sorting */}
-        <CategoriesSortNavBar />
-      </motion.div>
-
-      {/* Main Content Container */}
       {!isProductDetailsWindowOpened && (
-        <div className="w-full flex flex-col px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
-          <Products />
-        </div>
+        <motion.div
+          key="mot-2"
+          initial={{ y: 1000, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 1000, opacity: 0 }}
+          transition={{
+            duration: 0.4,
+            ease: "anticipate",
+          }}
+        >
+          {/* Navigation Bar for Categories & Sorting */}
+          <div className="sticky top-[59px] backdrop-blur-md bg-white bg-opacity-75 px-[2rem] mt-[120px] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify">
+            <CategoriesSortNavBar />
+          </div>
+
+          {/* Main Content Container */}
+          <div className="w-full flex flex-col px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
+            <Products />
+          </div>
+        </motion.div>
+      )}
+
+      {/* Sticky Header for Products */}
+      {isProductDetailsWindowOpened && (
+        <motion.div
+          key="mot-3"
+          className="sticky top-[59px] backdrop-blur-md bg-white bg-opacity-75 px-[2rem] mt-[120px] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify"
+          initial={{ y: 1000, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 1000, opacity: 0 }}
+          transition={{
+            duration: 0.4,
+            ease: "anticipate",
+          }}
+        >
+          {/* Navigation Bar for Product Details */}
+          <ProductDetailsNavBar />
+        </motion.div>
       )}
 
       {isProductDetailsWindowOpened && (
-        <div className="w-full flex px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
+        <div className="w-full flex flex-col px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
           <ProductDetails />
         </div>
       )}

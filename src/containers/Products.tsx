@@ -1,4 +1,3 @@
-import { AnimatePresence, motion } from "framer-motion";
 import { useSupabase } from "../supabase/SupabaseContext";
 import Product from "../supabase/model/Product.ts";
 import ProductCard from "../components/ProductCard";
@@ -143,24 +142,11 @@ export default function Products() {
   });
 
   return (
-    <AnimatePresence>
-      <motion.div
-        className="w-full max-w-[62rem] flex flex-col items-center justify-center"
-        initial={{ y: 1000, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 1000, opacity: 0 }}
-        transition={{
-          duration: 0.8,
-          ease: "anticipate",
-        }}
-      >
-        <div
-          ref={containerRef}
-          className="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] w-full gap-[1rem] mt-[1rem]"
-        >
-          {productCards}
-        </div>
-      </motion.div>
-    </AnimatePresence>
+    <div
+      ref={containerRef}
+      className="max-w-[62rem] grid grid-cols-[repeat(auto-fit,minmax(clamp(15rem,20%,20rem),1fr))] w-full gap-[1rem] mt-[1rem]"
+    >
+      {productCards}
+    </div>
   );
 }

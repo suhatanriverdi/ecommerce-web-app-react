@@ -1,19 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useAtom } from "jotai/index";
-import { productDetailsWindowAtom } from "../atoms/productDetailsWindowAtom.tsx";
 
 export default function Products() {
-  const [, setIsProductDetailsWindowOpened] = useAtom(productDetailsWindowAtom);
-
-  const handleCloseProductDetailsWindow = () => {
-    setIsProductDetailsWindowOpened(false);
-  };
-
   return (
     <AnimatePresence>
       <motion.div
         key="prod-details"
-        onClick={handleCloseProductDetailsWindow}
         className="w-full max-w-[62rem] flex flex-col items-center justify-center"
         initial={{ y: 1000, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -23,8 +14,13 @@ export default function Products() {
           ease: "anticipate",
         }}
       >
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] w-full gap-[1rem] mt-[1rem]">
-          ProductDetailsDetails
+        <div className="flex flex-col justify-center items-center text-lg w-full max-w-[62rem]">
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut cum
+            delectus dolore nulla pariatur perferendis reiciendis. Alias, fugit,
+            recusandae. Est et exercitationem facilis libero minima nihil
+            nostrum repellendus sit voluptate!
+          </div>
         </div>
       </motion.div>
     </AnimatePresence>

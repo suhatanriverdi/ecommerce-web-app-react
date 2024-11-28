@@ -15,7 +15,7 @@ export default function ProductCard({ title, price, img_url }: Product) {
   return (
     <div
       onClick={handleOpenProductDetailsWindow}
-      className="flex flex-col p-6 justify-between items-center hover:shadow-[0px_0px_4px_1px_rgba(0,_120,_90,_0.4)] cursor-pointer shadow-[0px_0px_3px_1px_rgba(0,_0,_0,_0.1)]"
+      className="flex flex-col p-6 min-h-[30rem] justify-between items-center hover:shadow-[0px_0px_4px_1px_rgba(0,_120,_90,_0.4)] cursor-pointer shadow-[0px_0px_3px_1px_rgba(0,_0,_0,_0.1)]"
     >
       {!isLoading && <h2 className="text-lg">{title}</h2>}
       <ClodinaryImg
