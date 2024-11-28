@@ -12,6 +12,7 @@ export default function Products() {
   return (
     <AnimatePresence>
       <motion.div
+        key="prod-details"
         onClick={handleCloseProductDetailsWindow}
         className="w-full max-w-[62rem] flex flex-col items-center justify-center"
         initial={{ y: 1000, opacity: 0 }}

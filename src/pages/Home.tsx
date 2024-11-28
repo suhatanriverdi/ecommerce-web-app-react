@@ -55,13 +55,17 @@ export default function Home() {
       </motion.div>
 
       {/* Main Content Container */}
-      <div className="w-full flex flex-col px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
-        {!isProductDetailsWindowOpened && <Products />}
-      </div>
+      {!isProductDetailsWindowOpened && (
+        <div className="w-full flex flex-col px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
+          <Products />
+        </div>
+      )}
 
-      <div className="w-full flex px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
-        {isProductDetailsWindowOpened && <ProductDetails />}
-      </div>
+      {isProductDetailsWindowOpened && (
+        <div className="w-full flex px-[2rem] items-center justify-center bg-white bg-opacity-100 mb-[8rem]">
+          <ProductDetails />
+        </div>
+      )}
     </AnimatePresence>
   );
 }
