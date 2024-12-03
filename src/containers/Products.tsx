@@ -118,10 +118,8 @@ export default function Products() {
     },
   );
 
-  // TODO
-  // console.log("data: ", products);
+  // console.log("products: ", products);
 
-  // TODO
   // Loading state, this is needed otherwise will produce an error
   if (isLoading) {
     return (
@@ -131,14 +129,13 @@ export default function Products() {
     );
   }
 
-  // TODO
   if (error) {
     return <NotFound reason={"supabase"} />;
   }
 
   // Build the cards
-  const productCards = products!.map((product: Product) => {
-    return <ProductCard key={product.Id} {...product} />;
+  const productCards = products.map((product: Product) => {
+    return <ProductCard key={product.id} product={product} />;
   });
 
   return (

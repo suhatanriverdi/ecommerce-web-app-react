@@ -1,5 +1,5 @@
 export default interface Product {
-  Id: number;
+  id: number;
   category: string;
   gender: string;
   color: string;
