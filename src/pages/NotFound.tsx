@@ -7,7 +7,7 @@ type Reason = {
 export default function NotFound({ reason }: Reason) {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <p className="text-6xl">
+      <p className="text-xl md:text-4xl sm:text-6xl">
         {reason === "supabase" ? "Supabase Error" : "URL Not Found :("}
       </p>
       <Link

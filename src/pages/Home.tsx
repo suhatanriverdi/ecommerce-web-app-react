@@ -16,6 +16,7 @@ export default function Home() {
   const [, setGenderQuery] = useAtom(genderQueryAtom);
   const [isProductDetailsWindowOpened] = useAtom(productDetailsWindowAtom);
 
+  // TODO
   // Update the genderQuery
   // useEffect(() => {
   //   setGenderQuery(gender ?? null);
@@ -46,8 +47,7 @@ export default function Home() {
       {/* Sticky Header for Products */}
       {isProductDetailsWindowOpened && (
         <div>
-          <div
-            className="mt-[120px] pb-[1rem] px-[2rem] z-10 w-full flex flex-col items-center justify-center text-justify">
+          <div className="sticky top-[59px] backdrop-blur-md bg-white bg-opacity-75 px-[2rem] mt-[120px] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify">
             {/* Navigation Bar for Product Details */}
             <ProductDetailsNavBar />
           </div>

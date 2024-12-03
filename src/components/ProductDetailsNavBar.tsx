@@ -12,7 +12,7 @@ export default function ProductDetailsNavBar() {
   };
 
   return (
-    <div className="flex w-full justify-between items-center my-[1rem]">
+    <div className="text-lg flex w-full max-w-[62rem] justify-between items-center text-center pt-[1rem] relative">
       <p className="text-lg ">{selectedProduct?.title}</p>
       <div className="cursor-pointer" onClick={handleCloseProductDetailsWindow}>
         <CloseIcon />

@@ -49,12 +49,12 @@ export default function Products() {
   const sizeOptions = ["S", "M", "L", "XL", "2XL", "3XL"];
 
   return (
-    <div className="flex flex-col justify-center items-end max-w-[62rem] text-justify text-pretty w-full">
+    <div className="flex flex-col pt-4 justify-center items-end max-w-[62rem] text-pretty w-full">
       {/* Product Details */}
       <div className="shadow-light">
-        <div className="gap-[1rem] grid grid-cols-[repeat(auto-fit,minmax(clamp15rem,20%,20rem),1fr))]">
+        <div className="gap-[1rem] grid items-center grid-cols-[repeat(auto-fit,minmax(clamp(15rem,20%,20rem),1fr))]">
           {/* Product Photo */}
-          <div className="p-6">
+          <div className="">
             <ClodinaryImg
               img_url={selectedProduct!.img_url}
               isLoading={isLoading}
@@ -63,22 +63,23 @@ export default function Products() {
           </div>
 
           {/* Product Details */}
-          <div className="flex flex-col gap-5 justify-between items-start w-full px-6">
-            <p className="font-extrabold">{selectedProduct!.title}</p>
+          <div className="flex flex-col gap-5 justify-center items-start w-full px-4">
+            <div className="flex flex-col gap-1 w-full">
+              {/*<p>{selectedProduct!.title}</p>*/}
+              <p>{selectedProduct!.desc}</p>
+            </div>
 
-            <p>{selectedProduct!.desc}</p>
-
-            <div>
-              <p className="text-sm sm:text-md">Beden</p>
-              <div className="flex text-xl sm:text-3xl justify-center items-start">
+            <div className="w-full">
+              <p className="text-sm tablet:text-md">Beden</p>
+              <div className="flex w-full justify-between items-center">
                 {sizeOptions.map((size) => {
                   return (
                     <div
                       onClick={() => handleProductSizeChange(size)}
                       key={size}
-                      className={`hover:bg-button-bg-light ${size === selectedProductSize && "bg-button-bg-light"} cursor-pointer px-3`}
+                      className={`flex justify-center items-center ${size === selectedProductSize && "bg-button-bg-light"} w-12 h-11 cursor-pointer`}
                     >
-                      {size}
+                      <p className="text-3xl text-center">{size}</p>
                     </div>
                   );
                 })}
@@ -86,26 +87,26 @@ export default function Products() {
             </div>
 
             <div>
-              <p className="text-sm sm:text-md">Adet</p>
+              <p className="text-sm tablet:text-md">Adet</p>
               <div className="grid grid-cols-3 items-center justify-items-center gap-3 text-2xl">
                 <CustomButton
                   onClick={() => handleProductAmountChange(-1)}
-                  w={"2.8"}
-                  h={"2.5"}
+                  w={"3"}
+                  h={"2.75"}
                   name={"-"}
                 />
                 <p>{productAmount}</p>
                 <CustomButton
                   onClick={() => handleProductAmountChange(+1)}
-                  w={"2.8"}
-                  h={"2.5"}
+                  w={"3"}
+                  h={"2.75"}
                   name={"+"}
                 />
               </div>
             </div>
 
-            <div className="flex flex-col justify-center items-start pb-5">
-              <p className="text-sm sm:text-md">Fiyat</p>
+            <div className="flex w-full flex-col justify-center items-end pb-5">
+              <p className="text-sm tablet:text-md">Fiyat</p>
               <p className="text-4xl">
                 {selectedProduct!.price}{" "}
                 <span className="font-extralight">{"₺"}</span>
