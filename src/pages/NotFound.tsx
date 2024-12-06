@@ -6,13 +6,13 @@ type Reason = {
 
 export default function NotFound({ reason }: Reason) {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <p className="text-xl md:text-4xl sm:text-6xl">
-        {reason === "supabase" ? "Supabase Error" : "URL Not Found :("}
+    <div className="dark:bg-dark dark:text-white flex flex-col items-center justify-center pt-[10rem] tablet:pt-[25rem]">
+      <p className="text-3xl tablet:text-5xl desktop:text-7xl text-rose-700 animate-pulse">
+        {reason === "supabase" ? "Supabase Error :(" : "URL Not Found :("}
       </p>
       <Link
-        className="w-[15rem] h-[3rem] flex justify-center items-center mb-10 mt-10 bg-sky-200 hover:bg-sky-300 border cursor-pointer border-x-sky-200 rounded-2xl"
-        to="/home/men"
+        className="w-[15rem] h-[3rem] text-xlg flex justify-center items-center mb-10 mt-10 bg-blue-100 hover:bg-blue-200 border cursor-pointer border-x-sky-200 rounded-2xl"
+        to="/advertisement"
       >
         Go Back to Home Page
       </Link>

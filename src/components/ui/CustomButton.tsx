@@ -18,7 +18,7 @@ export default function CustomButton({
       onClick={onClick}
       style={{ height: `${h}rem`, width: `${w}rem` }}
       className={
-        "flex justify-center items-center bg-button-bg hover:bg-button-bg-light cursor-pointer p-3"
+        "flex justify-center items-center dark:bg-button-bg-dark dark:hover:bg-lime-600 bg-button-bg hover:bg-button-bg-light cursor-pointer p-3"
       }
     >
       {name}

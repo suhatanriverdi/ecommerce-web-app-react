@@ -65,7 +65,7 @@ function DropDownMenu({
   return (
     <div className="relative">
       <div
-        className="sort-menu hover:text-button-bg-dark cursor-pointer"
+        className="sort-menu hover:text-button-bg-dark cursor-pointer dark:bg-dark dark:text-white"
         onClick={handleMenuOpened}
       >
         {menuTitleState}
@@ -81,7 +81,7 @@ function DropDownMenu({
               duration: 0.2,
               ease: "anticipate",
             }}
-            className={`text-lg ${!isLeft && "right-0"} shadow-[0px_0px_5px_1px_rgba(0,_0,_0,_0.1)] sort-menu flex flex-col justify-start text-left items-start absolute top-[40px] z-20 p-3 backdrop-blur bg-white bg-opacity-95`}
+            className={`text-lg ${!isLeft && "right-0"} dark:bg-dark dark:text-white dark:shadow-button-bg-dark shadow-[0px_0px_5px_1px_rgba(0,_0,_0,_0.1)] sort-menu flex flex-col justify-start text-left items-start absolute top-[40px] z-20 p-3 backdrop-blur bg-white bg-opacity-95`}
           >
             {items.map((item) => {
               return (

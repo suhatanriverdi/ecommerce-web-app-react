@@ -49,12 +49,12 @@ export default function Products() {
   const sizeOptions = ["S", "M", "L", "XL", "2XL", "3XL"];
 
   return (
-    <div className="flex flex-col pt-4 justify-center items-end max-w-[62rem] text-pretty w-full">
+    <div className="flex flex-col pt-4 justify-center items-end w-full max-w-[62rem] text-justify text-pretty">
       {/* Product Details */}
-      <div className="shadow-light">
-        <div className="gap-[1rem] grid items-center grid-cols-[repeat(auto-fit,minmax(clamp(15rem,20%,20rem),1fr))]">
+      <div className="flex flex-col justify-center w-full items-center shadow-light mb-[2rem] tablet:mb-[1rem] pb-[2rem] tablet:pb-[4rem]">
+        <div className="flex flex-col justify-items-center items-center px-[2rem]">
           {/* Product Photo */}
-          <div className="">
+          <div className="flex justify-center items-center h-full max-h-[20rem] tablet:max-h-[36rem] w-full tablet:max-w-[32rem] overflow-clip">
             <ClodinaryImg
               img_url={selectedProduct!.img_url}
               isLoading={isLoading}
@@ -63,11 +63,8 @@ export default function Products() {
           </div>
 
           {/* Product Details */}
-          <div className="flex flex-col gap-5 justify-center items-start w-full px-4">
-            <div className="flex flex-col gap-1 w-full">
-              {/*<p>{selectedProduct!.title}</p>*/}
-              <p>{selectedProduct!.desc}</p>
-            </div>
+          <div className="flex flex-col tablet:text-xl  tablet:px-[0rem] gap-[2rem] justify-between items-start w-full h-full max-h-[24rem]">
+            <p>{selectedProduct!.desc}</p>
 
             <div className="w-full">
               <p className="text-sm tablet:text-md">Beden</p>
@@ -77,9 +74,9 @@ export default function Products() {
                     <div
                       onClick={() => handleProductSizeChange(size)}
                       key={size}
-                      className={`flex justify-center items-center ${size === selectedProductSize && "bg-button-bg-light"} w-12 h-11 cursor-pointer`}
+                      className={`flex justify-center items-center ${size === selectedProductSize && "bg-button-bg dark:bg-button-bg-dark"} hover:bg-button-bg-light dark:hover:bg-lime-600 w-10 h-10 cursor-pointer`}
                     >
-                      <p className="text-3xl text-center">{size}</p>
+                      <p className="text-2xl text-center">{size}</p>
                     </div>
                   );
                 })}
@@ -105,7 +102,7 @@ export default function Products() {
               </div>
             </div>
 
-            <div className="flex w-full flex-col justify-center items-end pb-5">
+            <div className="flex w-full flex-col justify-center items-end">
               <p className="text-sm tablet:text-md">Fiyat</p>
               <p className="text-4xl">
                 {selectedProduct!.price}{" "}
@@ -117,7 +114,7 @@ export default function Products() {
       </div>
 
       {/* Add to Cart Button */}
-      <div className="pt-5">
+      <div className="pt-5 text-lg">
         <CustomButton
           onClick={() => handleAddToCart()}
           w={"11"}

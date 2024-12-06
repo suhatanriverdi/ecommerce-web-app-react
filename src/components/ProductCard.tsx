@@ -24,7 +24,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div
       onClick={handleOpenProductDetailsWindow}
-      className="flex flex-col p-6 min-h-[30rem] justify-between items-center hover:shadow-[0px_0px_4px_1px_rgba(0,_120,_90,_0.4)] cursor-pointer shadow-light"
+      className="flex flex-col p-6 justify-between items-center hover:dark:shadow-button-bg-dark hover:shadow-button-bg-dark cursor-pointer shadow-light"
     >
       {!isLoading && <h2 className="text-lg">{product.title}</h2>}
       <ClodinaryImg

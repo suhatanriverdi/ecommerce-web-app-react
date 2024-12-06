@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+html:has(.dark) {
+    @apply bg-dark text-white;
+}
+
 /* CSS Reset */
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  user-select: none;
-  font-family: "Poiret One", "Nova Flat", sans-serif, system-ui;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: "Poiret One", "Nova Flat", sans-serif, system-ui;
 }

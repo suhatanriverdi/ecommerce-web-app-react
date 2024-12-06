@@ -28,18 +28,14 @@ const ClodinaryImg = ({
     .quality("auto");
 
   return (
-    <div className="flex items-center justify-center w-full h-full">
-      <AdvancedImage
-        onLoad={handleImageLoad}
-        plugins={[lazyload()]}
-        cldImg={img}
-        className={
-          isLoading
-            ? "opacity-0"
-            : "opacity-100 transition-opacity duration-500"
-        }
-      />
-    </div>
+    <AdvancedImage
+      onLoad={handleImageLoad}
+      plugins={[lazyload()]}
+      cldImg={img}
+      className={
+        isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-500"
+      }
+    />
   );
 };
 

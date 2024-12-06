@@ -26,7 +26,7 @@ export default function CategoriesSortNavBar() {
   ];
 
   return (
-    <div className="text-lg flex w-full max-w-[62rem] justify-between items-center text-center pt-[1rem] relative">
+    <div className="dark:bg-dark dark:text-white text-lg flex w-full max-w-[62rem] justify-between items-center text-center pt-[1rem] relative">
       <div className="flex">
         <p>
           {currentCategory}&nbsp;{">"}&nbsp;
