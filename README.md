@@ -11,8 +11,87 @@ Introducing **Güllü**, a clean and modern e-commerce web app design with a min
 
 ---
 
-⚠️ This project is still ongoing, and we're almost there! The shopping cart functionality is the last major feature remaining.
+⚠️ This project is still ongoing, and we're almost there!<br>
+The shopping cart functionality is the last major feature remaining.
 Stay tuned for the final release. 🚀
+
+---
+
+You can have a look at the complete Figma design here:
+### [Figma Design Link](https://www.figma.com/design/ZTXIfVovD9IIbTtLuBylpv/E-Commerce-Gu%CC%88lderen-Fashion-Web-Design?node-id=0-1&t=Uk5SkM16H9eyXz7s-1)
+
+---
+
+## Features
+
+- **Responsive Design:** Seamless experience on all devices.
+- **Animations:** Nice animations using framer motion.
+- **UI Components:** Built using reusable components for efficiency.
+- **State Management:** Atom-based state management with clear separation of concerns.
+- **Dark Mode Support:** Integrated light and dark mode switcher.
+- **Custom Hooks:** Optimized performance for features like shopping cart management.
+
+## Technologies
+
+- **Frontend:** React, TypeScript, Tailwind CSS, Framer Motion, Custom Fonts, Figma
+- **State Management:** Jotai (Atoms)
+- **Backend:** Supabase (PostgreSQL Database and Authentication)
+- **Image Storage:** Cloudinary
+- **Build Tool:** Vite
+
+---
+
+## Database Schema (Supabase)
+
+This project uses [Supabase](https://supabase.io/) as a backend for storing product information.
+Below is the schema used for the `products` table:
+
+### `products` Table
+
+| Column Name   | Data Type | Description                                               |
+|---------------|-----------|-----------------------------------------------------------|
+| `id`          | `integer` | Primary key, auto-incremented                             |
+| `title`       | `string`  | Name of the product (e.g., “Green Cotton T-Shirt”)        |
+| `description` | `text`    | Detailed description of the product                       |
+| `category`    | `string`  | Product category (e.g., “tshirt”, “hoodie”, “sweatpants”) |
+| `price`       | `decimal` | Price of the product                                      |
+| `gender`      | `string`  | Target gender for the product (e.g., “men”, “women”)      |
+| `image_url`   | `string`  | URL of the product image                                  |
+
+---
+
+### Sample Product JSON
+
+Here’s a sample product JSON that can be used for seeding the database:
+
+```json
+{
+  "id": 1,
+  "title": "Green Cotton T-Shirt",
+  "description": "High-quality, breathable cotton T-shirt in green.",
+  "category": "tshirt",
+  "price": 19.99,
+  "gender": "men",
+  "color": "#34A853",
+  "image_url": "https://example.com/images/tshirt-green.jpg"
+}
+```
+
+### Project Structure
+
+Below is a brief explanation of the project structure:
+
+```
+src/
+├── atoms/         # Recoil atoms for state management
+├── components/    # Reusable UI components
+├── config/        # App-level configuration constants
+├── containers/    # Main container components
+├── hooks/         # Custom hooks
+├── pages/         # Page components
+├── supabase/      # Supabase-specific code (context, model, seed, utils)
+└── utils/         # Utility functions
+```
 
 ---
 
@@ -46,107 +125,10 @@ Stay tuned for the final release. 🚀
 
 ---
 
-# TODO | I will put more images as soon as I complete this project.
-
-
-## Features
-
-- **Responsive Design:** Seamless experience on all devices.
-- **Elegant UI Components:** Built using reusable components for efficiency.
-- **State Management:** Atom-based state management with clear separation of concerns.
-- **Dark Mode Support:** Integrated light and dark mode switcher.
-- **Custom Hooks:** Optimized performance for features like shopping cart management.
-
-## Technologies
-
-- **Frontend:** React, TypeScript, Tailwind CSS
-- **State Management:** Recoil (Atoms)
-- **Backend:** Supabase (Database and Authentication)
-- **Build Tool:** Vite
+### TODO | I will put more images as soon as I complete this project.
 
 ---
 
-## Database Schema (Supabase)
+**License**
 
-This project uses [Supabase](https://supabase.io/) as a backend for storing product information.
-Below is the schema used for the `products` table:
-
-### `products` Table
-
-| Column Name   | Data Type | Description                                               |
-|---------------|-----------|-----------------------------------------------------------|
-| `id`          | `integer` | Primary key, auto-incremented                             |
-| `title`       | `string`  | Name of the product (e.g., “Green Cotton T-Shirt”)        |
-| `description` | `text`    | Detailed description of the product                       |
-| `category`    | `string`  | Product category (e.g., “tshirt”, “hoodie”, “sweatpants”) |
-| `price`       | `decimal` | Price of the product                                      |
-| `gender`      | `string`  | Target gender for the product (e.g., “men”, “women”)      |
-| `color`       | `string`  | Color of the product (stored as hex code or color name)   |
-| `image_url`   | `string`  | URL of the product image                                  |
-
----
-
-### Sample Product JSON
-
-Here’s a sample product JSON that can be used for seeding the database:
-
-```json
-{
-  "id": 1,
-  "title": "Green Cotton T-Shirt",
-  "description": "High-quality, breathable cotton T-shirt in green.",
-  "category": "tshirt",
-  "price": 19.99,
-  "gender": "men",
-  "color": "#34A853",
-  "image_url": "https://example.com/images/tshirt-green.jpg"
-}
-
-Project Structure
-
-Below is a brief explanation of the folder structure:
-
-src/
-├── atoms/         # Recoil atoms for state management
-├── components/    # Reusable UI components
-├── config/        # App-level configuration constants
-├── containers/    # Main container components
-├── hooks/         # Custom hooks
-├── pages/         # Page components
-├── supabase/      # Supabase-specific code (context, model, seed, utils)
-└── utils/         # Utility functions
-
-Installation and Usage
-	1.	Clone the repository:
-
-git clone https://github.com/your-repo/gullu.git
-cd gullu
-
-
-	2.	Install dependencies:
-
-npm install
-
-
-	3.	Start the development server:
-
-npm run dev
-
-
-	4.	Open your browser and navigate to http://localhost:3000.
-
-TODO
-	•	Enhance animations for better user experience.
-	•	Add a wishlist feature.
-	•	Integrate advanced filters for products.
-
-License
-
-This project is open source and available under the MIT License.
-
-Bu dosyayı `README.md` olarak kaydedip, projenize ekleyebilirsiniz. Eğer GitHub'a yüklemek isterseniz, dosyayı projenizin kök dizinine yerleştirip şu komutları çalıştırabilirsiniz:
-
-```bash
-git add README.md
-git commit -m "Add README"
-git push
+_This project is open source and available under the MIT License._
