@@ -1,6 +1,12 @@
 # Güllü: A Simple E-Commerce Web App
 
-Introducing **Güllü**, a clean and modern e-commerce web app design with a minimalist yet fashionable touch. This fully responsive design ensures a seamless shopping experience across all devices, from desktops to smartphones. The intuitive layout and elegant visuals create a user-friendly interface focusing on simplicity and style. Perfect for fashion-forward brands looking to enhance their online presence with a sleek, functional, and aesthetically pleasing web experience.
+Introducing **Güllü**, a clean and modern e-commerce web app design with a minimalist yet fashionable touch. This fully responsive design ensures a seamless shopping experience across all devices, from desktops to smartphones.
+
+---
+
+![Screenshot 2024-12-10 at 08 53 23](https://github.com/user-attachments/assets/9e9f6b84-4216-4220-bac8-a191200e6b4c)
+
+---
 
 ## TODO
 
@@ -114,14 +120,6 @@ src/
 ---
 
 ![Screenshot 2024-12-10 at 08 54 16](https://github.com/user-attachments/assets/902af54a-e1fd-4a50-8ab4-56a8549e04d5)
-
----
-
-![Screenshot 2024-12-10 at 08 53 59](https://github.com/user-attachments/assets/c070c556-3c46-4bf7-ae12-3d932a9b5c61)
-
----
-
-![Screenshot 2024-12-10 at 08 53 23](https://github.com/user-attachments/assets/9e9f6b84-4216-4220-bac8-a191200e6b4c)
 
 ---
 
