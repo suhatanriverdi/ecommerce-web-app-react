@@ -30,11 +30,16 @@ You can have a look at the complete Figma design here:
 
 ## Features
 
-- **Responsive Design:** Seamless experience on all devices.
+- **Responsive Design:** Seamless UI experience on all devices.
+- **Product Listing:** Display products by category and gender.
+- **Details:** Display the product details, and select the size and amount.
+- **Sort:** Sort products by price in asc/desc order.
+- **Shopping Cart (Coming very soon):** A user-friendly cart system to manage selected products.
 - **Animations:** Nice animations using framer motion.
-- **UI Components:** Built using reusable components for efficiency.
+- **UI Components:** Built using reusable react components for efficiency.
 - **State Management:** Atom-based state management with clear separation of concerns.
 - **Dark Mode Support:** Integrated light and dark mode switcher.
+- **Supabase Integration:** Handles backend storage and database operations.
 - **Custom Hooks:** Optimized performance for features like shopping cart management.
 
 ## Technologies
