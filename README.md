@@ -17,7 +17,7 @@ Introducing **Güllü**, a clean and modern e-commerce web app design with a min
 
 ---
 
-⚠️ This project is still ongoing, and we're almost there!<br>
+⚠️ This project is still ongoing, and I'm almost there!<br>
 The shopping cart functionality is the last major feature remaining.
 Stay tuned for the final release. 🚀
 
