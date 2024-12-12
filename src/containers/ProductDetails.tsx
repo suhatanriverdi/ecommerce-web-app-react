@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import { selectedProductAtom } from "../atoms/selectedProductAtom.tsx";
 import ClodinaryImg from "../components/ClodinaryImg.tsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomButton from "../components/ui/CustomButton.tsx";
 import { productAmountAtom } from "../atoms/productAmountAtom.tsx";
 import useShoppingCart from "../hooks/useShoppingCart.tsx";
@@ -10,19 +10,24 @@ import { selectedProductSizeAtom } from "../atoms/selectedProductSizeAtom.tsx";
 
 export default function Products() {
   // Shopping Cart Hook
-  const { cart, addToCart, removeFromCart } = useShoppingCart();
-
-  cart.forEach((item: ItemOrder) => {
-    console.log("item: ", item);
-    // console.log(JSON.stringify(item));
-  });
+  const { cart, addToCart } = useShoppingCart();
 
   const [selectedProduct] = useAtom(selectedProductAtom);
   const [productAmount, setProductAmount] = useAtom(productAmountAtom);
   const [selectedProductSize, setSelectedProductSize] = useAtom(
     selectedProductSizeAtom,
   );
+
   const [isLoading, setIsLoading] = useState(true);
+
+  // TODO Remove
+  useEffect(() => {
+    if (selectedProduct !== undefined && cart.has(selectedProduct.id)) {
+      for (const [key, value] of cart.get(selectedProduct!.id)!.entries()) {
+        console.log("key: ", key, "value: ", value);
+      }
+    }
+  }, [cart, selectedProduct]);
 
   const handleProductAmountChange = (amount: number) => {
     setProductAmount(productAmount + amount <= 0 ? 1 : productAmount + amount);
@@ -34,17 +39,15 @@ export default function Products() {
 
   const handleAddToCart = () => {
     const newItemOrder: ItemOrder = {
-      product: selectedProduct!,
+      singleItemPrice: selectedProduct!.price,
+      name: selectedProduct!.title,
+      id: selectedProduct!.id,
       amount: productAmount,
       size: selectedProductSize,
     };
+
     addToCart(newItemOrder);
   };
-
-  // TODO
-  // const handleRemoveFromCart = () => {
-  //   removeFromCart();
-  // };
 
   const sizeOptions = ["S", "M", "L", "XL", "2XL", "3XL"];
 

@@ -1,13 +1,15 @@
 import { atom } from "jotai";
-import Product from "../supabase/model/Product.ts";
 
 export type ItemOrder = {
-  product: Product;
+  id: number;
   amount: number;
+  singleItemPrice: number;
+  totalCost?: number;
+  name: string;
   size: string;
 };
 
-// Products Atom
+// Shopping Cart Atom
 export const shoppingCartAtom = atom<Map<number, Map<string, ItemOrder>>>(
   new Map(),
 );

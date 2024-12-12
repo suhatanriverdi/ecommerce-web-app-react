@@ -1,24 +1,72 @@
 import { useAtom } from "jotai";
 import { shoppingCartAtom, ItemOrder } from "../atoms/shoppingCartAtom.tsx";
+import { cartSizeAtom } from "../atoms/cartSizeAtom.tsx";
 
 const useShoppingCart = () => {
   const [cart, setCart] = useAtom(shoppingCartAtom);
+  const [cartSize, setCartSize] = useAtom(cartSizeAtom);
+
+  const getCartSize = () => {
+    return cartSize;
+  };
+
+  const handleCartSize = (amount: number) => {
+    setCartSize((prev) => prev + amount);
+  };
+
+  const getOldAmountOfItemOrder = (
+    itemOrderId: number,
+    itemOrderSize: string,
+  ) => {
+    if (!cart.has(itemOrderId)) {
+      return 0;
+    }
+
+    if (!cart.get(itemOrderId)!.has(itemOrderSize)) {
+      return 0;
+    }
+
+    return cart.get(itemOrderId)!.get(itemOrderSize)!.amount;
+  };
 
   const addToCart = (itemOrder: ItemOrder) => {
     setCart((prevCartsMap) => {
-      // Deep copy
+      // Deep copy the old map into new one
       const newCartsMap = structuredClone(prevCartsMap);
-      const itemOrderId = itemOrder.product.id;
+
+      // console.log("Previous State: ", prevCartsMap);
 
       // If the item already exists, increment the amount
-      const prevItemOrder = newCartsMap.get(itemOrderId);
-      const prevAmount = prevItemOrder ? prevItemOrder.amount : 0;
+      const itemOrderId = itemOrder.id;
+      const itemOrderSize = itemOrder.size;
+      const itemOrderAmount = itemOrder.amount;
+      const oldAmount = getOldAmountOfItemOrder(itemOrderId, itemOrderSize);
 
-      const newAmount = itemOrder.amount + prevAmount;
-      const newItemOrder = { ...itemOrder, amount: newAmount };
+      const newAmount = itemOrderAmount + oldAmount;
+      const singlePrice = itemOrder.singleItemPrice;
 
-      newCartsMap.set(itemOrderId, newItemOrder);
+      const updatedOrder: ItemOrder = {
+        ...itemOrder,
+        amount: newAmount,
+        totalCost: singlePrice * newAmount,
+      };
 
+      // Create a new map if not exist
+      if (!newCartsMap.has(itemOrderId)) {
+        newCartsMap.set(itemOrderId, new Map<string, ItemOrder>());
+      }
+
+      // Insert the new updatedOrder
+      newCartsMap.get(itemOrderId)!.set(itemOrderSize, updatedOrder);
+
+      // Increment Cart Size
+      handleCartSize(itemOrderAmount);
+
+      // for (const [key, value] of newCartsMap.entries()) {
+      //   console.log("key: ", key, "value: ", value);
+      // }
+
+      // console.log("Updated State: ", newCartsMap);
       return newCartsMap;
     });
   };
@@ -33,7 +81,7 @@ const useShoppingCart = () => {
     });
   };
 
-  return { cart, addToCart, removeFromCart };
+  return { cart, addToCart, removeFromCart, getCartSize, setCartSize };
 };
 
 export default useShoppingCart;
