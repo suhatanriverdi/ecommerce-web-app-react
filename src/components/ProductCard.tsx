@@ -26,7 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       onClick={handleOpenProductDetailsWindow}
       className="flex flex-col p-6 justify-between items-center hover:dark:shadow-button-bg-dark hover:shadow-button-bg-dark cursor-pointer shadow-light"
     >
-      {!isLoading && <h2 className="text-lg">{product.title}</h2>}
+      {!isLoading && <h2 className="text-lg text-center">{product.title}</h2>}
       <ClodinaryImg
         img_url={product.img_url}
         isLoading={isLoading}

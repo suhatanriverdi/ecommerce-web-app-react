@@ -7,6 +7,7 @@ export type ItemOrder = {
   totalCost?: number;
   name: string;
   size: string;
+  img_url: string;
 };
 
 // Shopping Cart Atom

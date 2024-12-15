@@ -12,7 +12,17 @@ export default {
       },
       boxShadow: {
         light: "0px 0px 3px 1px rgba(0, 0, 0, 0.1)",
+        medium: "0px 0px 5px 1px rgba(0, 0, 0, 0.12)",
         dark: "0px 0px 3px 1px rgba(255, 255, 255, 0.7)",
+      },
+      keyframes: {
+        bounceUpDown: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
+      animation: {
+        bounceUpDown: "bounceUpDown 0.3s ease-in-out",
       },
     },
     screens: {

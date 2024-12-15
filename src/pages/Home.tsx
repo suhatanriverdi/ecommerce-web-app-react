@@ -10,11 +10,13 @@ import { useEffect } from "react";
 import ProductDetails from "../containers/ProductDetails";
 import { productDetailsWindowAtom } from "../atoms/productDetailsWindowAtom.tsx";
 import ProductDetailsNavBar from "../components/ProductDetailsNavBar.tsx";
+// import useShoppingCart from "../hooks/useShoppingCart.tsx";
 
 export default function Home() {
   const { gender } = useParams();
   const [, setGenderQuery] = useAtom(genderQueryAtom);
   const [isProductDetailsWindowOpened] = useAtom(productDetailsWindowAtom);
+  // const { restoreCartFromStorage } = useShoppingCart();
 
   // TODO
   // Update the genderQuery
@@ -23,6 +25,11 @@ export default function Home() {
   }, [gender, setGenderQuery]);
 
   // console.log(gender);
+
+  // Restore Card Information from Local Storage
+  // useEffect(() => {
+  //   restoreCartFromStorage();
+  // }, []);
 
   return (
     <div className="dark:bg-dark dark:text-white">
@@ -35,7 +42,7 @@ export default function Home() {
       {!isProductDetailsWindowOpened && (
         <div>
           {/* Navigation Bar for Categories & Sorting */}
-          <div className="sticky top-[59px] backdrop-blur-md bg-white dark:bg-dark dark:text-white bg-opacity-75 px-[2rem] mt-[120px] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify">
+          <div className="sticky top-[59px] backdrop-blur-md bg-white dark:bg-dark  dark:text-white dark:bg-opacity-75 bg-opacity-75 px-[2rem] mt-[120px] pb-[1rem] z-10 w-full flex flex-col items-center justify-center text-justify">
             <CategoriesSortNavBar />
           </div>
 
@@ -46,10 +53,10 @@ export default function Home() {
         </div>
       )}
 
-      {/*Sticky Header for Products */}
+      {/*Sticky Header for Product Details */}
       {isProductDetailsWindowOpened && (
         <div>
-          <div className="sticky top-[59px] backdrop-blur-md bg-white dark:bg-dark dark:text-white bg-opacity-75 px-[2rem] mt-[120px] z-10 w-full flex flex-col items-center justify-center text-justify">
+          <div className="sticky top-[59px] backdrop-blur-md bg-white dark:bg-dark dark:text-white dark:bg-opacity-75 bg-opacity-75 px-[2rem] mt-[120px] z-10 w-full flex flex-col items-center justify-center text-justify">
             {/* Navigation Bar for Product Details */}
             <ProductDetailsNavBar />
           </div>

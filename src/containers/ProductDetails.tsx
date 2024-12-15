@@ -1,16 +1,18 @@
 import { useAtom } from "jotai";
 import { selectedProductAtom } from "../atoms/selectedProductAtom.tsx";
 import ClodinaryImg from "../components/ClodinaryImg.tsx";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CustomButton from "../components/ui/CustomButton.tsx";
 import { productAmountAtom } from "../atoms/productAmountAtom.tsx";
 import useShoppingCart from "../hooks/useShoppingCart.tsx";
 import { ItemOrder } from "../atoms/shoppingCartAtom.tsx";
 import { selectedProductSizeAtom } from "../atoms/selectedProductSizeAtom.tsx";
 
-export default function Products() {
+export default function ProductDetails() {
   // Shopping Cart Hook
-  const { cart, addToCart } = useShoppingCart();
+  const { addToCart } = useShoppingCart();
+
+  const amountRef = useRef<HTMLParagraphElement | null>(null);
 
   const [selectedProduct] = useAtom(selectedProductAtom);
   const [productAmount, setProductAmount] = useAtom(productAmountAtom);
@@ -21,16 +23,22 @@ export default function Products() {
   const [isLoading, setIsLoading] = useState(true);
 
   // TODO Remove
-  useEffect(() => {
-    if (selectedProduct !== undefined && cart.has(selectedProduct.id)) {
-      for (const [key, value] of cart.get(selectedProduct!.id)!.entries()) {
-        console.log("key: ", key, "value: ", value);
-      }
-    }
-  }, [cart, selectedProduct]);
+  // useEffect(() => {
+  //   if (selectedProduct !== undefined && cart.has(selectedProduct.id)) {
+  //     for (const [key, value] of cart.get(selectedProduct!.id)!.entries()) {
+  //       console.log("key: ", key, "value: ", value);
+  //     }
+  //   }
+  // }, [cart, selectedProduct]);
 
   const handleProductAmountChange = (amount: number) => {
     setProductAmount(productAmount + amount <= 0 ? 1 : productAmount + amount);
+    if (amountRef.current) {
+      amountRef.current.classList.add("animate-bounceUpDown");
+      setTimeout(() => {
+        amountRef.current?.classList.remove("animate-bounceUpDown");
+      }, 300);
+    }
   };
 
   const handleProductSizeChange = (size: string) => {
@@ -44,6 +52,7 @@ export default function Products() {
       id: selectedProduct!.id,
       amount: productAmount,
       size: selectedProductSize,
+      img_url: selectedProduct!.img_url,
     };
 
     addToCart(newItemOrder);
@@ -95,7 +104,7 @@ export default function Products() {
                   h={"2.75"}
                   name={"-"}
                 />
-                <p>{productAmount}</p>
+                <p ref={amountRef}>{productAmount}</p>
                 <CustomButton
                   onClick={() => handleProductAmountChange(+1)}
                   w={"3"}

@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
 import { shoppingCartAtom, ItemOrder } from "../atoms/shoppingCartAtom.tsx";
 import { cartSizeAtom } from "../atoms/cartSizeAtom.tsx";
+import { replacer, reviver } from "../utils/serializationUtils.ts";
 
 const useShoppingCart = () => {
   const [cart, setCart] = useAtom(shoppingCartAtom);
@@ -12,6 +13,31 @@ const useShoppingCart = () => {
 
   const handleCartSize = (amount: number) => {
     setCartSize((prev) => prev + amount);
+  };
+
+  const restoreCartFromStorage = () => {
+    const cartValueString = localStorage.getItem("cart");
+    const cartSizeString = localStorage.getItem("cartSize");
+    if (cartValueString && cartSizeString) {
+      // Cart Value
+      const newCartValue = JSON.parse(cartValueString, reviver);
+      setCart(newCartValue);
+      // Cart Size
+      const newCartSize = JSON.parse(cartSizeString, reviver);
+      setCartSize(newCartSize);
+    }
+  };
+
+  const handleLocalStorage = (
+    updatedCartsMap: Map<number, Map<string, ItemOrder>>,
+    newCardSize: number,
+  ) => {
+    // Store Cart Information into LocalStorage
+    const newCartsMapString = JSON.stringify(updatedCartsMap, replacer);
+    localStorage.setItem("cart", newCartsMapString);
+
+    // Store Cart Size into LocalStorage
+    localStorage.setItem("cartSize", newCardSize.toString());
   };
 
   const getOldAmountOfItemOrder = (
@@ -29,12 +55,36 @@ const useShoppingCart = () => {
     return cart.get(itemOrderId)!.get(itemOrderSize)!.amount;
   };
 
-  const addToCart = (itemOrder: ItemOrder) => {
+  const removeFromCart = (
+    itemOrderId: number,
+    itemOrderSize: string,
+    itemOrderAmount: number,
+  ) => {
     setCart((prevCartsMap) => {
       // Deep copy the old map into new one
       const newCartsMap = structuredClone(prevCartsMap);
 
-      // console.log("Previous State: ", prevCartsMap);
+      // Remove the item
+      newCartsMap.get(itemOrderId)!.delete(itemOrderSize);
+      if (newCartsMap.get(itemOrderId)!.size === 0) {
+        newCartsMap.delete(itemOrderId);
+      }
+
+      // Sync Local Storage
+      const newCartSize = cartSize - itemOrderAmount;
+      // Update Cart Size
+      setCartSize(newCartSize);
+      // Sync local storage
+      handleLocalStorage(newCartsMap, newCartSize);
+
+      return newCartsMap;
+    });
+  };
+
+  const addToCart = (itemOrder: ItemOrder) => {
+    setCart((prevCartsMap) => {
+      // Deep copy the old map into new one
+      const newCartsMap = structuredClone(prevCartsMap);
 
       // If the item already exists, increment the amount
       const itemOrderId = itemOrder.id;
@@ -62,26 +112,22 @@ const useShoppingCart = () => {
       // Increment Cart Size
       handleCartSize(itemOrderAmount);
 
-      // for (const [key, value] of newCartsMap.entries()) {
-      //   console.log("key: ", key, "value: ", value);
-      // }
-
-      // console.log("Updated State: ", newCartsMap);
-      return newCartsMap;
-    });
-  };
-
-  const removeFromCart = (itemOrderId: number) => {
-    setCart((prevCartsMap) => {
-      // Deep copy
-      const newCartsMap = structuredClone(prevCartsMap);
-      newCartsMap.delete(itemOrderId);
+      // Store Cart Information into LocalStorage
+      const newCartSize = itemOrderAmount + cartSize;
+      handleLocalStorage(newCartsMap, newCartSize);
 
       return newCartsMap;
     });
   };
 
-  return { cart, addToCart, removeFromCart, getCartSize, setCartSize };
+  return {
+    cart,
+    addToCart,
+    removeFromCart,
+    getCartSize,
+    setCartSize,
+    restoreCartFromStorage,
+  };
 };
 
 export default useShoppingCart;

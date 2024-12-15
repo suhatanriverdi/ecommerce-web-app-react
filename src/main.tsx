@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound.tsx";
 // React Router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./pages/Layout.tsx";
+import ShoppingCart from "./containers/ShoppingCart.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Introduction />,
+      },
+      {
+        path: "shopping-cart",
+        element: <ShoppingCart />,
       },
       {
         path: "advertisement",
