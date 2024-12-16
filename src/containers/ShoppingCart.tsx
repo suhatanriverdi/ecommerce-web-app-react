@@ -11,7 +11,6 @@ import { useAtom } from "jotai";
 
 export default function ShoppingCart() {
   const navigate = useNavigate();
-  const amountRef = useRef<HTMLParagraphElement | null>(null);
 
   // Shopping Cart Hook
   const { cart, removeFromCart, adjustOrderItemAmount } = useShoppingCart();
@@ -28,12 +27,11 @@ export default function ShoppingCart() {
     adjustOrderItemAmount(itemOrderId, itemOrderSize, itemOrderPrice, amount);
 
     // Small Animation
-    if (amountRef.current) {
-      amountRef.current.classList.add("animate-bounceUpDown");
-      setTimeout(() => {
-        amountRef.current?.classList.remove("animate-bounceUpDown");
-      }, 300);
-    }
+    const amountElem = document.getElementById(itemOrderId + itemOrderSize);
+    amountElem!.classList.add("animate-bounceUpDown");
+    setTimeout(() => {
+      amountElem!.classList.remove("animate-bounceUpDown");
+    }, 300);
   };
 
   const handleGoBack = () => {
@@ -174,7 +172,7 @@ export default function ShoppingCart() {
                             </div>
                             <div className="flex justify-center items-center">
                               <p
-                                ref={amountRef}
+                                id={itemOrder.id + itemOrder.size}
                                 className="text-3xl w-full tablet:text-4xl text-center"
                               >
                                 {itemOrder.amount}
