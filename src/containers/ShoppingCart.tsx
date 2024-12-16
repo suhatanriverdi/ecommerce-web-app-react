@@ -14,13 +14,18 @@ export default function ShoppingCart() {
   const amountRef = useRef<HTMLParagraphElement | null>(null);
 
   // Shopping Cart Hook
-  const { cart, removeFromCart } = useShoppingCart();
+  const { cart, removeFromCart, adjustOrderItemAmount } = useShoppingCart();
   const [isLoading, setIsLoading] = useState(true);
   const [cartSize] = useAtom(cartSizeAtom);
   const [finalCost, setFinalCost] = useState(0);
 
-  const handleProductAmountChange = (amount: number) => {
-    // setProductAmount(productAmount + amount <= 0 ? 1 : productAmount + amount);
+  const handleProductAmountChange = (
+    itemOrderId: number,
+    itemOrderSize: string,
+    itemOrderPrice: number,
+    amount: number,
+  ) => {
+    adjustOrderItemAmount(itemOrderId, itemOrderSize, itemOrderPrice, amount);
 
     // Small Animation
     if (amountRef.current) {
@@ -60,9 +65,9 @@ export default function ShoppingCart() {
   // Set Final Cost
   useEffect(() => {
     setFinalCost(finalCostTotal);
-  }, [finalCostTotal]);
+  }, [finalCostTotal, cartSize]);
 
-  console.log(cart);
+  console.log(cart, cartSize, finalCostTotal);
   // console.log("itemOrders: ", itemOrders);
 
   return (
@@ -95,7 +100,7 @@ export default function ShoppingCart() {
           {/* No Items in Shopping Cart */}
           {cartSize === 0 && (
             <div className="text-xl tablet:text-2xl pt-[10rem] text-rose-700">
-              {"Your shopping cart is empty :("}
+              {"Sepeteniz boş :("}
             </div>
           )}
 
@@ -155,7 +160,14 @@ export default function ShoppingCart() {
                           <p className="text-sm tablet:text-lg">Adet</p>
                           <div className="flex justify-center items-center gap-3 tablet:gap-4 text-2xl">
                             <div
-                              onClick={() => handleProductAmountChange(-1)}
+                              onClick={() =>
+                                handleProductAmountChange(
+                                  itemOrder.id,
+                                  itemOrder.size,
+                                  itemOrder.singleItemPrice,
+                                  -1,
+                                )
+                              }
                               className="flex text-3xl justify-center items-center tablet:w-[3rem] w-[1rem] h-[1rem] tablet:h-[3rem] dark:bg-button-bg-dark dark:hover:bg-lime-600 bg-button-bg hover:bg-button-bg-light cursor-pointer p-4"
                             >
                               {"-"}
@@ -169,7 +181,14 @@ export default function ShoppingCart() {
                               </p>
                             </div>
                             <div
-                              onClick={() => handleProductAmountChange(+1)}
+                              onClick={() =>
+                                handleProductAmountChange(
+                                  itemOrder.id,
+                                  itemOrder.size,
+                                  itemOrder.singleItemPrice,
+                                  +1,
+                                )
+                              }
                               className="flex text-3xl justify-center items-center tablet:w-[3rem] w-[1rem] h-[1rem] tablet:h-[3rem] dark:bg-button-bg-dark dark:hover:bg-lime-600 bg-button-bg hover:bg-button-bg-light cursor-pointer p-4"
                             >
                               {"+"}

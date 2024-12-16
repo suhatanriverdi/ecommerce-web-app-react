@@ -40,19 +40,43 @@ const useShoppingCart = () => {
     localStorage.setItem("cartSize", newCardSize.toString());
   };
 
-  const getOldAmountOfItemOrder = (
+  const adjustOrderItemAmount = (
     itemOrderId: number,
     itemOrderSize: string,
+    itemOrderPrice: number,
+    itemOrderAmount: number,
   ) => {
-    if (!cart.has(itemOrderId)) {
-      return 0;
-    }
+    setCart((prevCartsMap) => {
+      // Deep copy the old map into new one
+      const newCartsMap = structuredClone(prevCartsMap);
 
-    if (!cart.get(itemOrderId)!.has(itemOrderSize)) {
-      return 0;
-    }
+      // Update the amount
+      newCartsMap.get(itemOrderId)!.get(itemOrderSize)!.amount +=
+        itemOrderAmount;
 
-    return cart.get(itemOrderId)!.get(itemOrderSize)!.amount;
+      // Update total cost
+      newCartsMap.get(itemOrderId)!.get(itemOrderSize)!.totalCost! +=
+        itemOrderAmount < 0 ? -itemOrderPrice : itemOrderPrice;
+
+      if (newCartsMap.get(itemOrderId)!.get(itemOrderSize)!.amount === 0) {
+        newCartsMap.get(itemOrderId)!.delete(itemOrderSize);
+      }
+
+      if (newCartsMap.get(itemOrderId)!.size === 0) {
+        newCartsMap.delete(itemOrderId);
+      }
+
+      // Sync Local Storage
+      const newCartSize = cartSize + itemOrderAmount;
+
+      // Update Cart Size
+      setCartSize(newCartSize);
+
+      // Sync local storage
+      handleLocalStorage(newCartsMap, newCartSize);
+
+      return newCartsMap;
+    });
   };
 
   const removeFromCart = (
@@ -72,13 +96,30 @@ const useShoppingCart = () => {
 
       // Sync Local Storage
       const newCartSize = cartSize - itemOrderAmount;
+
       // Update Cart Size
       setCartSize(newCartSize);
+
       // Sync local storage
       handleLocalStorage(newCartsMap, newCartSize);
 
       return newCartsMap;
     });
+  };
+
+  const getOldAmountOfItemOrder = (
+    itemOrderId: number,
+    itemOrderSize: string,
+  ) => {
+    if (!cart.has(itemOrderId)) {
+      return 0;
+    }
+
+    if (!cart.get(itemOrderId)!.has(itemOrderSize)) {
+      return 0;
+    }
+
+    return cart.get(itemOrderId)!.get(itemOrderSize)!.amount;
   };
 
   const addToCart = (itemOrder: ItemOrder) => {
@@ -124,6 +165,7 @@ const useShoppingCart = () => {
     cart,
     addToCart,
     removeFromCart,
+    adjustOrderItemAmount,
     getCartSize,
     setCartSize,
     restoreCartFromStorage,
