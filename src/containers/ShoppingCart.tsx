@@ -1,5 +1,5 @@
 import ClodinaryImg from "../components/ClodinaryImg.tsx";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import useShoppingCart from "../hooks/useShoppingCart.tsx";
 import { useNavigate } from "react-router-dom";
