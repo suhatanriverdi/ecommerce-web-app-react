@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import { selectedProductAtom } from "../atoms/selectedProductAtom.tsx";
 import ClodinaryImg from "../components/ClodinaryImg.tsx";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import CustomButton from "../components/ui/CustomButton.tsx";
 import { productAmountAtom } from "../atoms/productAmountAtom.tsx";
 import useShoppingCart from "../hooks/useShoppingCart.tsx";
@@ -21,15 +21,6 @@ export default function ProductDetails() {
   );
 
   const [isLoading, setIsLoading] = useState(true);
-
-  // TODO Remove
-  // useEffect(() => {
-  //   if (selectedProduct !== undefined && cart.has(selectedProduct.id)) {
-  //     for (const [key, value] of cart.get(selectedProduct!.id)!.entries()) {
-  //       console.log("key: ", key, "value: ", value);
-  //     }
-  //   }
-  // }, [cart, selectedProduct]);
 
   const handleProductAmountChange = (amount: number) => {
     setProductAmount(productAmount + amount <= 0 ? 1 : productAmount + amount);

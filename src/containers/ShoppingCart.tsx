@@ -46,9 +46,8 @@ export default function ShoppingCart() {
     removeFromCart(itemOrderId, itemOrderSize, itemOrderAmount);
   };
 
-  const handleShoppingDone = () => {
-    // TODO Shopping Done :)
-  };
+  // TODO Shopping Done!
+  const handleShoppingDone = () => {};
 
   // Initialize Cart Items
   const itemOrders: ItemOrder[] = [];
@@ -65,7 +64,7 @@ export default function ShoppingCart() {
     setFinalCost(finalCostTotal);
   }, [finalCostTotal, cartSize]);
 
-  console.log(cart, cartSize, finalCostTotal);
+  // console.log(cart, cartSize, finalCostTotal);
   // console.log("itemOrders: ", itemOrders);
 
   return (
@@ -141,14 +140,22 @@ export default function ShoppingCart() {
                       </div>
 
                       {/* Size */}
-                      <div className="w-full">
-                        <p className="text-sm tablet:text-lg">Beden</p>
-                        <div className="flex w-full justify-between items-center">
-                          <div className="flex justify-center items-center">
-                            <p className="text-3xl tablet:text-5xl">
-                              {itemOrder.size}
-                            </p>
+                      <div className="w-full flex justify-center items-center pr-[1.3rem] tablet:pr-[4rem]">
+                        <div>
+                          <p className="text-sm tablet:text-lg">Beden</p>
+                          <div className="flex w-full justify-between items-center">
+                            <div className="flex justify-center items-center">
+                              <p className="text-3xl tablet:text-5xl">
+                                {itemOrder.size}
+                              </p>
+                            </div>
                           </div>
+                        </div>
+                        <div className="flex w-full flex-col justify-center items-end">
+                          <p className="text-sm tablet:text-lg">Tek Adet</p>
+                          <p className="tablet:text-3xl">
+                            {itemOrder.singleItemPrice} <span>{"₺"}</span>
+                          </p>
                         </div>
                       </div>
 
@@ -196,9 +203,13 @@ export default function ShoppingCart() {
 
                         {/* Cost */}
                         <div className="flex w-full flex-col justify-center items-end">
-                          <p className="text-sm tablet:text-lg">Fiyat</p>
-                          <p className="text-2xl tablet:text-4xl">
-                            {itemOrder.singleItemPrice} <span>{"₺"}</span>
+                          {/*<p className="text-sm tablet:text-lg">Tek Adet</p>*/}
+                          {/*<p className="text-2xl tablet:text-3xl">*/}
+                          {/*  {itemOrder.singleItemPrice} <span>{"₺"}</span>*/}
+                          {/*</p>{" "}*/}
+                          <p className="text-sm tablet:text-lg">{"Toplam"}</p>
+                          <p className="text-lg tablet:text-4xl">
+                            {itemOrder.totalCost} <span>{"₺"}</span>
                           </p>
                         </div>
                       </div>
