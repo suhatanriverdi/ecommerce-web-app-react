@@ -54,7 +54,7 @@ export default function ProductDetails() {
   return (
     <div className="flex flex-col pt-4 justify-center items-end w-full max-w-[62rem] text-justify text-pretty">
       {/* Product Details */}
-      <div className="flex flex-col justify-center w-full items-center shadow-light mb-[2rem] tablet:mb-[1rem] pb-[2rem] tablet:pb-[4rem]">
+      <div className="flex flex-col dark:shadow-button-bg-dark justify-center w-full items-center shadow-light mb-[2rem] tablet:mb-[1rem] pb-[2rem] tablet:pb-[4rem]">
         <div className="flex flex-col justify-items-center items-center px-[2rem]">
           {/* Product Photo */}
           <div className="flex justify-center items-center h-full max-h-[36rem] tablet:max-h-[36rem] w-full tablet:max-w-[32rem] overflow-clip">
