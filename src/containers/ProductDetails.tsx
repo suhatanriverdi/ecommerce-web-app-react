@@ -57,7 +57,7 @@ export default function ProductDetails() {
       <div className="flex flex-col justify-center w-full items-center shadow-light mb-[2rem] tablet:mb-[1rem] pb-[2rem] tablet:pb-[4rem]">
         <div className="flex flex-col justify-items-center items-center px-[2rem]">
           {/* Product Photo */}
-          <div className="flex justify-center items-center h-full max-h-[20rem] tablet:max-h-[36rem] w-full tablet:max-w-[32rem] overflow-clip">
+          <div className="flex justify-center items-center h-full max-h-[36rem] tablet:max-h-[36rem] w-full tablet:max-w-[32rem] overflow-clip">
             <ClodinaryImg
               img_url={selectedProduct!.img_url}
               isLoading={isLoading}

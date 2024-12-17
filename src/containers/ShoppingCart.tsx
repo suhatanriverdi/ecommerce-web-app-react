@@ -120,7 +120,7 @@ export default function ShoppingCart() {
                     </div>
 
                     {/* Product Details */}
-                    <div className="flex flex-col tablet:text-xl tablet:px-[0rem] gap-[0.5rem] tablet:gap-[2rem] justify-center items-start w-full h-full py-6 tablet:py-8 tablet:max-h-[24rem]">
+                    <div className="flex flex-col tablet:text-xl tablet:px-[0rem] gap-[1rem] tablet:gap-[2rem] justify-center items-start w-full h-full py-6 tablet:py-8 tablet:max-h-[24rem]">
                       <div className="flex justify-between w-full items-center pr-[1rem] tablet:pr-[4rem]">
                         <p className="text-left text-wrap tablet:text-2xl w-full max-w-[11rem] tablet:max-w-[34rem]">
                           {itemOrder.name}

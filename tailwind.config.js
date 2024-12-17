@@ -26,7 +26,7 @@ export default {
       },
     },
     screens: {
-      tablet: "480px",
+      tablet: "760px",
       desktop: "1024px",
     },
   },
