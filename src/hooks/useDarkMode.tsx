@@ -1,7 +1,8 @@
-import React from "react";
+import { useAtom } from "jotai";
+import { darkModeAtom } from "../atoms/darkModeAtom.tsx";
 
 const useDarkMode = () => {
-  const [dark, setDark] = React.useState(false);
+  const [dark, setDark] = useAtom(darkModeAtom);
 
   const darkModeHandler = () => {
     setDark(!dark);
