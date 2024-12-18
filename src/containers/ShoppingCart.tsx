@@ -111,7 +111,7 @@ export default function ShoppingCart() {
                     className="flex justify-center items-center w-full shadow-medium dark:shadow-button-bg-dark"
                   >
                     {/* Product Photo */}
-                    <div className="w-full max-w-[7rem] tablet:max-w-[20rem] pr-[1rem] pl-[0.6rem] tablet:pl-[1.5rem] tablet:pr-[2rem]">
+                    <div className="w-full max-w-[6rem] tablet:max-w-[20rem] pr-[1rem] pl-[0.6rem] tablet:pl-[1.5rem] tablet:pr-[2rem]">
                       <ClodinaryImg
                         img_url={itemOrder.img_url}
                         isLoading={isLoading}
