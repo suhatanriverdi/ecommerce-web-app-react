@@ -6,24 +6,18 @@ Introducing **Güllü**, a clean and modern e-commerce web app design with a min
 
 ![Screenshot 2024-12-10 at 08 53 23](https://github.com/user-attachments/assets/9e9f6b84-4216-4220-bac8-a191200e6b4c)
 
----
-
-## TODO
-
-- Implement the shopping cart functionality (almost complete!)
-- Enhance animations for a better user experience
-- Implement search feature
-- Implement filters feature
+<img width="724" alt="Screenshot 2024-12-17 at 19 20 06" src="https://github.com/user-attachments/assets/5b414243-76eb-4400-9ebc-8fe5757c0f20" />
 
 ---
 
-⚠️ This project is still ongoing, and I'm almost there!<br>
-The shopping cart functionality is the last major feature remaining.
-Stay tuned for the final release. 🚀
+## 🚀 Live Preview
 
----
+You can have a look at the live preview link:
+## [Live Preview Link](https://ecommerce-web-app-react-fawn.vercel.app/)
 
-You can have a look at the complete Figma design here:
+### 🖥️ Figma Design
+
+Check out the complete UI design in Figma:  
 ### [Figma Design Link](https://www.figma.com/design/ZTXIfVovD9IIbTtLuBylpv/E-Commerce-Gu%CC%88lderen-Fashion-Web-Design?node-id=0-1&t=Uk5SkM16H9eyXz7s-1)
 
 ---
@@ -41,6 +35,16 @@ You can have a look at the complete Figma design here:
 - **Dark Mode Support:** Integrated light and dark mode switcher.
 - **Supabase Integration:** Handles backend storage and database operations.
 - **Custom Hooks:** Optimized performance for features like shopping cart management.
+
+---
+
+## TODO
+
+- Enhance animations for a better user experience
+- Implement search feature
+- Implement filters feature
+
+---
 
 ## Technologies
 
@@ -128,7 +132,11 @@ src/
 
 ---
 
-### TODO | I will put more images as soon as I complete this project.
+<img width="724" alt="Screenshot 2024-12-17 at 19 19 45" src="https://github.com/user-attachments/assets/222421dd-1c37-4649-96e1-05ffdf4e5c65" />
+
+---
+
+<img width="724" alt="Screenshot 2024-12-17 at 19 19 57" src="https://github.com/user-attachments/assets/76d6824c-be5b-47af-b5fe-e742d7167493" />
 
 ---
 
