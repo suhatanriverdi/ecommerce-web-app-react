@@ -3,12 +3,15 @@ import { Outlet } from "react-router-dom";
 import ScrollToTop from "../utils/ScrollToTop";
 import { useEffect } from "react";
 import useShoppingCart from "../hooks/useShoppingCart";
+import useDarkMode from "../hooks/useDarkMode.tsx";
 
 const Layout = () => {
   // Restore Card Information from Local Storage
   const { restoreCartFromStorage } = useShoppingCart();
+  const { syncDarkModeFromLocalStorage } = useDarkMode();
   useEffect(() => {
     restoreCartFromStorage();
+    syncDarkModeFromLocalStorage();
   }, []);
 
   return (

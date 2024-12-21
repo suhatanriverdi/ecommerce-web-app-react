@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+// import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 // Import the SupabaseProvider
@@ -42,9 +42,9 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <SupabaseProvider>
-      <RouterProvider router={router} />
-    </SupabaseProvider>
-  </StrictMode>
+  // <StrictMode>
+  <SupabaseProvider>
+    <RouterProvider router={router} />
+  </SupabaseProvider>,
+  // </StrictMode>
 );

@@ -11,10 +11,10 @@ import { useNavigate } from "react-router-dom";
 export default function NavBar() {
   const [, setGenderQuery] = useAtom(genderQueryAtom);
   const [isProductDetailsWindowOpened] = useAtom(productDetailsWindowAtom);
-  const { dark, darkModeHandler } = useDarkMode();
+  const { isDark, darkModeHandler } = useDarkMode();
   const [cartSize] = useAtom(cartSizeAtom);
   const navigate = useNavigate();
-  
+
   const handleGenderQuery = (gender: string) => {
     setGenderQuery(gender);
   };
@@ -56,8 +56,7 @@ export default function NavBar() {
             Kadın
           </Link>
           <button className="tablet:pl-3" onClick={darkModeHandler}>
-            {dark && <LightIcon />}
-            {!dark && <DarkIcon />}
+            {!isDark ? <DarkIcon /> : <LightIcon />}
           </button>
         </div>
       )}
