@@ -225,7 +225,7 @@ export default function ShoppingCart() {
             <div className="pt-[6rem] tablet:text-xl flex flex-col items-center justify-between w-full">
               <div className="flex justify-between items-center w-full mb-[2rem]">
                 <p>{"Toplam Ödenecek: "}</p>
-                <p className="text-justify text-4xl tablet:text-6xl text-green-600">
+                <p className="text-justify text-4xl tablet:text-6xl text-green-600 dark:text-green-400">
                   {finalCost + " ₺"}
                 </p>
               </div>

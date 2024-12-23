@@ -82,14 +82,14 @@ function DropDownMenu({
               duration: 0.2,
               ease: "anticipate",
             }}
-            className={`text-lg ${!isLeft && "right-0"} dark:bg-dark dark:bg-opacity-75 dark:text-white dark:shadow-button-bg-dark shadow-[0px_0px_5px_1px_rgba(0,_0,_0,_0.1)] sort-menu flex flex-col justify-start text-left items-start absolute top-[40px] z-20 p-3 bg-white`}
+            className={`text-lg ${!isLeft && "right-0"} dark:bg-dark dark:text-white dark:shadow-button-bg-dark shadow-[0px_0px_5px_1px_rgba(0,_0,_0,_0.1)] sort-menu flex flex-col justify-start text-left items-start absolute top-[40px] z-20 p-3 bg-white`}
           >
             {items.map((item) => {
               return (
                 item.name !== menuTitleState && (
                   <div
                     onClick={() => handleSetQuery(item.name, item.query)}
-                    className="hover:text-button-bg-dark cursor-pointer w-max"
+                    className="hover:text-button-bg-dark hover:dark:text-button-bg-light cursor-pointer w-max"
                     key={item.name}
                   >
                     {item.name}

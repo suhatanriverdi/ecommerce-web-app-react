@@ -28,7 +28,7 @@ export default function NavBar() {
       <div className="flex">
         <p
           onClick={handleShoppingCartClick}
-          className="hover:text-button-bg-dark cursor-pointer"
+          className="hover:text-button-bg-dark hover:dark:text-button-bg-light cursor-pointer"
         >
           Sepet
         </p>
@@ -43,14 +43,14 @@ export default function NavBar() {
         <div className="flex gap-1.5 tablet:gap-0">
           <Link
             onClick={() => handleGenderQuery("men")}
-            className="tablet:pr-[1rem] hover:text-button-bg-dark"
+            className="tablet:pr-[1rem] hover:text-button-bg-dark hover:dark:text-button-bg-light"
             to="/home/men"
           >
             Erkek
           </Link>
           <Link
             onClick={() => handleGenderQuery("women")}
-            className="hover:text-button-bg-dark"
+            className="hover:text-button-bg-dark hover:dark:text-button-bg-light"
             to="/home/women"
           >
             Kadın

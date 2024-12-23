@@ -34,7 +34,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       />
       {!isLoading && (
         <div className="flex flex-col justify-center items-center">
-          <p className="text-button-bg-dark text-4xl">
+          <p className="text-button-bg-dark dark:text-button-bg-light text-4xl">
             {product.price} <span className="font-extralight">₺</span>
           </p>
         </div>
