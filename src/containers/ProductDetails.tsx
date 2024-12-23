@@ -15,7 +15,13 @@ export default function ProductDetails() {
   const amountRef = useRef<HTMLParagraphElement | null>(null);
 
   const [selectedProduct] = useAtom(selectedProductAtom);
+
   const [productAmount, setProductAmount] = useAtom(productAmountAtom);
+  // Reset value to 1 every time the page opens up
+  productAmountAtom.onMount = (set) => {
+    set(1);
+  };
+
   const [selectedProductSize, setSelectedProductSize] = useAtom(
     selectedProductSizeAtom,
   );

@@ -1,4 +1,4 @@
 import { atom } from "jotai";
 
-// Offset Query Atom
+// Product Amount Atom
 export const productAmountAtom = atom<number>(1);
