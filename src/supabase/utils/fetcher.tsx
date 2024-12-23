@@ -32,12 +32,7 @@ export const fetcher = async (
     query = query.order("price", { ascending: sortMode === "asc" });
   }
 
-  // console.log("genderQuery: ", genderQuery);
-  // console.log("query: ", query);
-
   const { data: products, error } = await query;
-
-  // console.log(products);
 
   if (error) {
     throw new Error(error.message);

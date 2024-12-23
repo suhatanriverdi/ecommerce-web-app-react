@@ -64,9 +64,6 @@ export default function ShoppingCart() {
     setFinalCost(finalCostTotal);
   }, [finalCostTotal, cartSize]);
 
-  // console.log(cart, cartSize, finalCostTotal);
-  // console.log("itemOrders: ", itemOrders);
-
   return (
     <AnimatePresence>
       <motion.div
@@ -96,8 +93,8 @@ export default function ShoppingCart() {
 
           {/* No Items in Shopping Cart */}
           {cartSize === 0 && (
-            <div className="text-xl tablet:text-2xl pt-[10rem] text-rose-700">
-              {"Sepeteniz boş :("}
+            <div className="text-xl tablet:text-4xl pt-[10rem] text-rose-700">
+              {"Sepetiniz boş :("}
             </div>
           )}
 

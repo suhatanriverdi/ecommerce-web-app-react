@@ -118,8 +118,6 @@ export default function Products() {
     },
   );
 
-  // console.log("products: ", products);
-
   // Loading state, this is needed otherwise will produce an error
   if (isLoading) {
     return (

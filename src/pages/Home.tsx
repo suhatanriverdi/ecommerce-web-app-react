@@ -10,26 +10,16 @@ import { useEffect } from "react";
 import ProductDetails from "../containers/ProductDetails";
 import { productDetailsWindowAtom } from "../atoms/productDetailsWindowAtom.tsx";
 import ProductDetailsNavBar from "../components/ProductDetailsNavBar.tsx";
-// import useShoppingCart from "../hooks/useShoppingCart.tsx";
 
 export default function Home() {
   const { gender } = useParams();
   const [, setGenderQuery] = useAtom(genderQueryAtom);
   const [isProductDetailsWindowOpened] = useAtom(productDetailsWindowAtom);
-  // const { restoreCartFromStorage } = useShoppingCart();
 
-  // TODO
   // Update the genderQuery
   useEffect(() => {
     setGenderQuery(gender ?? null);
   }, [gender, setGenderQuery]);
-
-  // console.log(gender);
-
-  // Restore Card Information from Local Storage
-  // useEffect(() => {
-  //   restoreCartFromStorage();
-  // }, []);
 
   return (
     <div className="dark:bg-dark dark:text-white">

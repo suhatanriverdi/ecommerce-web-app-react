@@ -12,6 +12,7 @@ export default function CategoriesSortNavBar() {
 
   // Sort Drop Down Button
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
+
   // Category Drop Down Button
   const [categoryMenuOpen, setCategoryMenuOpen] = useState(false);
 

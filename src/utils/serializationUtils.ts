@@ -12,7 +12,6 @@
 
   const str = JSON.stringify(originalValue, replacer);
   const newValue = JSON.parse(str, reviver);
-  console.log(originalValue, newValue);
 */
 
 // JSON.Stringify(value, replacer)
