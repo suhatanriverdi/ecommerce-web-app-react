@@ -25,6 +25,10 @@ export default function ProductDetails() {
   const [selectedProductSize, setSelectedProductSize] = useAtom(
     selectedProductSizeAtom,
   );
+  // Reset value to 1 every time the page opens up
+  selectedProductSizeAtom.onMount = (set) => {
+    set("XL");
+  };
 
   const [isLoading, setIsLoading] = useState(true);
 
