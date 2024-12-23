@@ -3,6 +3,8 @@ import { sortQueryAtom } from "../atoms/sortQueryAtom";
 import { categoryQueryAtom } from "../atoms/categoryQueryAtom";
 import DropDownMenu from "./DropDownMenu";
 import { useState } from "react";
+import { categoryMenuTitleAtom } from "../atoms/categoryMenuTitleAtom";
+import { sortingMenuTitleAtom } from "../atoms/sortingMenuTitleAtom";
 
 export default function CategoriesSortNavBar() {
   const { gender } = useParams();
@@ -32,9 +34,10 @@ export default function CategoriesSortNavBar() {
           {currentCategory}&nbsp;{">"}&nbsp;
         </p>
         <DropDownMenu
+          key={"category-drop-down"}
           isLeft={true}
           queryAtom={categoryQueryAtom}
-          menuTitle={"Tüm Ürünler"}
+          titleAtom={categoryMenuTitleAtom}
           items={categoryOptions}
           menuOpened={categoryMenuOpen}
           setOtherMenuOpened={setSortMenuOpen}
@@ -42,8 +45,9 @@ export default function CategoriesSortNavBar() {
         />
       </div>
       <DropDownMenu
+        key={"sorting-drop-down"}
         queryAtom={sortQueryAtom}
-        menuTitle={"Sırala"}
+        titleAtom={sortingMenuTitleAtom}
         items={sortOptions}
         menuOpened={sortMenuOpen}
         setOtherMenuOpened={setCategoryMenuOpen}

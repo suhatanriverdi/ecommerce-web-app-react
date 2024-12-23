@@ -1,30 +1,31 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { PrimitiveAtom, useAtom } from "jotai";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { scrollOffsetAtom } from "../atoms/scrollOffsetAtom";
 import { DEFAULT_OFFSET } from "../config/consts.ts";
 import { hasMoreProductsAtom } from "../atoms/hasMoreProductsAtom.tsx";
 
 type DropDownMenuProps = {
   queryAtom: PrimitiveAtom<string | null>;
-  menuTitle: string;
   items: { query: string; name: string }[];
   menuOpened: boolean;
   setOtherMenuOpened: React.Dispatch<React.SetStateAction<boolean>>;
   setMenuOpened: React.Dispatch<React.SetStateAction<boolean>>;
   isLeft?: boolean | null;
+  titleAtom: PrimitiveAtom<string>;
 };
 
 function DropDownMenu({
   queryAtom,
-  menuTitle,
+  titleAtom,
   items,
   menuOpened,
   setOtherMenuOpened,
   setMenuOpened,
   isLeft,
 }: DropDownMenuProps) {
-  const [menuTitleState, setMenuTitle] = useState(menuTitle);
+  const [menuTitleState, setMenuTitle] = useAtom(titleAtom);
+
   const [, setOffset] = useAtom(scrollOffsetAtom);
   const [, setHasMoreProducts] = useAtom(hasMoreProductsAtom);
 
@@ -81,7 +82,7 @@ function DropDownMenu({
               duration: 0.2,
               ease: "anticipate",
             }}
-            className={`text-lg ${!isLeft && "right-0"} dark:bg-dark dark:bg-opacity-75 dark:text-white dark:shadow-button-bg-dark shadow-[0px_0px_5px_1px_rgba(0,_0,_0,_0.1)] sort-menu flex flex-col justify-start text-left items-start absolute top-[40px] z-20 p-3 backdrop-blur bg-white bg-opacity-95`}
+            className={`text-lg ${!isLeft && "right-0"} dark:bg-dark dark:bg-opacity-75 dark:text-white dark:shadow-button-bg-dark shadow-[0px_0px_5px_1px_rgba(0,_0,_0,_0.1)] sort-menu flex flex-col justify-start text-left items-start absolute top-[40px] z-20 p-3 bg-white`}
           >
             {items.map((item) => {
               return (
