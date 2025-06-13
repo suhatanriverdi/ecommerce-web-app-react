@@ -19,7 +19,7 @@ You can have a look at the live preview link:
 
 ℹ️ This project was fully designed and developed by me — from the initial sketches on paper to every pixel and line of code:
 
-![823d292030fb2719143db2b483a1021b6e8f5e69](https://github.com/user-attachments/assets/cce6c4cc-90ee-41f2-b52b-1b45b1f6e75e)
+![sdf (1)](https://github.com/user-attachments/assets/5f62e9ba-052b-494b-9510-095ebc9dddeb)
 
 Check out the complete UI design in Figma:  
 ## [Figma Design Link](https://www.figma.com/design/ZTXIfVovD9IIbTtLuBylpv/E-Commerce-Gu%CC%88lderen-Fashion-Web-Design?node-id=0-1&t=Uk5SkM16H9eyXz7s-1)
