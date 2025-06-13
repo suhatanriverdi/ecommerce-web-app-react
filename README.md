@@ -17,8 +17,12 @@ You can have a look at the live preview link:
 
 ### 🖥️ Figma Design
 
+ℹ️ This project was fully designed and developed by me — from the initial sketches on paper to every pixel and line of code:
+
+![823d292030fb2719143db2b483a1021b6e8f5e69](https://github.com/user-attachments/assets/cce6c4cc-90ee-41f2-b52b-1b45b1f6e75e)
+
 Check out the complete UI design in Figma:  
-### [Figma Design Link](https://www.figma.com/design/ZTXIfVovD9IIbTtLuBylpv/E-Commerce-Gu%CC%88lderen-Fashion-Web-Design?node-id=0-1&t=Uk5SkM16H9eyXz7s-1)
+## [Figma Design Link](https://www.figma.com/design/ZTXIfVovD9IIbTtLuBylpv/E-Commerce-Gu%CC%88lderen-Fashion-Web-Design?node-id=0-1&t=Uk5SkM16H9eyXz7s-1)
 
 ---
 
